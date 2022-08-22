@@ -109,7 +109,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tunguyenba$hatcherydb',
         'USER': 'tunguyenba',
-        'PASSWORD': '285495659tu',
+        'PASSWORD': '285495659Tu',
         'HOST': 'tunguyenba.mysql.pythonanywhere-services.com'
     }
 }
