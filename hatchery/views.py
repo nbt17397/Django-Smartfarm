@@ -105,7 +105,6 @@ class AuthInfo(APIView):
 class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = UserWecon.objects.filter(active=True)
     serializer_class = UserWeconSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 
 class BuildingTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
