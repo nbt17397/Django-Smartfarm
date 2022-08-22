@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'hatchery.apps.HatcheryConfig',  # không khai báo không migrate được
     'rest_framework',
     'oauth2_provider',
-    'drf_yasg',
     'knox',
 ]
 
