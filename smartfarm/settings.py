@@ -94,13 +94,23 @@ WSGI_APPLICATION = 'smartfarm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'hatcherydb',
+#         'USER': 'root',
+#         'PASSWORD': '12345678',
+#         'HOST': ''
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hatcherydb',
-        'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': ''
+        'NAME': 'nbt17397$hatcherydb',
+        'USER': 'nbt17397',
+        'PASSWORD': '285495659tu',
+        'HOST': 'nbt17397.mysql.pythonanywhere-services.com'
     }
 }
 
