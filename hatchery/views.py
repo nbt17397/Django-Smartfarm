@@ -103,11 +103,13 @@ class AuthInfo(APIView):
 class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = UserWecon.objects.filter(active=True)
     serializer_class = UserWeconSerializer
+    permission_classes = permissions.IsAuthenticated
 
 
 class BuildingTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = BuildingType.objects.filter(active=True)
     serializer_class = BuildingTypeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         buildingTypes = BuildingType.objects.filter(active=True)
@@ -119,6 +121,7 @@ class BuildingTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
 class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Building.objects.filter(active=True)
     serializer_class = BuildingSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         buildings = Building.objects.filter(active=True)
@@ -130,6 +133,7 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 class UnitTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = UnitType.objects.filter(active=True)
     serializer_class = UnitTypeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         unitTypes = UnitType.objects.filter(active=True)
@@ -141,6 +145,7 @@ class UnitTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 class UnitViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Unit.objects.filter(active=True)
     serializer_class = UnitSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         units = Unit.objects.filter(active=True)
@@ -152,6 +157,7 @@ class UnitViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Tank.objects.filter(active=True)
     serializer_class = TankSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         tanks = Tank.objects.filter(active=True)
@@ -163,6 +169,7 @@ class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 class TankTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = TankType.objects.filter(active=True)
     serializer_class = TankTypeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         tankTypes = TankType.objects.filter(active=True)
@@ -174,6 +181,7 @@ class TankTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Season.objects.filter(active=True)
     serializer_class = SeasonSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         seasons = Season.objects.filter(active=True)
@@ -185,6 +193,7 @@ class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIVi
 class ShrimpTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = ShrimpType.objects.filter(active=True)
     serializer_class = ShrimpTypeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         shrimpTypes = ShrimpType.objects.filter(active=True)
@@ -196,6 +205,7 @@ class ShrimpTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
 class ShrimpStageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = ShrimpStage.objects.filter(active=True)
     serializer_class = ShrimpStageSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         shrimpStages = ShrimpStage.objects.filter(active=True)
@@ -207,6 +217,7 @@ class ShrimpStageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Create
 class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = TankPlanning.objects.filter(active=True)
     serializer_class = TankPlanningSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         tankPlans = TankPlanning.objects.filter(active=True)
@@ -218,6 +229,7 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
 class TankMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = TankMonitoring.objects.filter(active=True)
     serializer_class = TankMonitoringSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         tankMonitors = TankMonitoring.objects.filter(active=True)
@@ -229,6 +241,7 @@ class TankMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
 class FoodViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Food.objects.filter(active=True)
     serializer_class = FoodSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         foods = Food.objects.filter(active=True)
@@ -240,6 +253,7 @@ class FoodViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = FoodRecipe.objects.filter(active=True)
     serializer_class = FoodRecipeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         foodRecipes = FoodRecipe.objects.filter(active=True)
@@ -255,6 +269,7 @@ class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
 class FoodRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = FoodRecipeType.objects.filter(active=True)
     serializer_class = FoodRecipeTypeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         foodRecipeTypes = FoodRecipeType.objects.filter(active=True)
@@ -266,6 +281,7 @@ class FoodRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
 class MedicineViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Medicine.objects.filter(active=True)
     serializer_class = MedicineSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         medicines = Medicine.objects.filter(active=True)
@@ -277,6 +293,7 @@ class MedicineViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 class MedicineUsageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = MedicineUsage.objects.filter(active=True)
     serializer_class = MedicineUsageSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         usages = MedicineUsage.objects.filter(active=True)
@@ -288,6 +305,7 @@ class MedicineUsageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Crea
 class MedicineRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = MedicineRecipe.objects.filter(active=True)
     serializer_class = MedicineRecipeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         medicineRecipes = MedicineRecipe.objects.filter(active=True)
@@ -303,6 +321,7 @@ class MedicineRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
 class MedicineRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = MedicineRecipeType.objects.filter(active=True)
     serializer_class = MedicineRecipeTypeSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         medicineRecipes = MedicineRecipeType.objects.filter(active=True)
@@ -314,6 +333,7 @@ class MedicineRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics
 class DiseaseViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Disease.objects.filter(active=True)
     serializer_class = DiseaseSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         diseases = Disease.objects.filter(active=True)
@@ -325,6 +345,7 @@ class DiseaseViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIV
 class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Work.objects.filter(active=True)
     serializer_class = WorkSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         works = Work.objects.filter(active=True)
@@ -336,6 +357,7 @@ class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = WorkMonitoring.objects.filter(active=True)
     serializer_class = WorkMonitoringSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         workMonitorings = WorkMonitoring.objects.filter(active=True)
@@ -347,6 +369,7 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
 class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = Care.objects.filter(active=True)
     serializer_class = CareSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         cares = Care.objects.filter(active=True)
@@ -361,6 +384,7 @@ class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
     queryset = CareSchedule.objects.filter(active=True)
     serializer_class = CareScheduleSerializer
+    permission_classes = permissions.IsAuthenticated
 
     def list(self, request):
         careSchedules = CareSchedule.objects.filter(active=True)
