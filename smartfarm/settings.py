@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zs^vk-iu$0wf+0!ufjyy62x7btxi@t+yqu7*b_=829+!=0=e)7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nbt17397.pythonanywhere.com']
+ALLOWED_HOSTS = ['tunguyenba.pythonanywhere.com']
 
 
 # Application definition
@@ -107,10 +107,10 @@ WSGI_APPLICATION = 'smartfarm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nbt17397$hatcherydb',
-        'USER': 'nbt17397',
+        'NAME': 'tunguyenba$hatcherydb',
+        'USER': 'tunguyenba',
         'PASSWORD': '285495659tu',
-        'HOST': 'nbt17397.mysql.pythonanywhere-services.com'
+        'HOST': 'tunguyenba.mysql.pythonanywhere-services.com'
     }
 }
 
