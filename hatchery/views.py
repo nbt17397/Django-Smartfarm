@@ -76,7 +76,7 @@ def get_user_data(request):
     return Response(data={'error': 'not authenticated'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser]
@@ -102,12 +102,12 @@ class AuthInfo(APIView):
         return Response(settings.OAUTH2_INFO, status=status.HTTP_200_OK)
 
 
-class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = UserWecon.objects.filter(active=True)
     serializer_class = UserWeconSerializer
 
 
-class BuildingTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class BuildingTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = BuildingType.objects.filter(active=True)
     serializer_class = BuildingTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -119,7 +119,7 @@ class BuildingTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
         return Response(data={"buildingTypes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Building.objects.filter(active=True)
     serializer_class = BuildingSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -131,7 +131,7 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
         return Response(data={"buildings": serializer.data}, status=status.HTTP_200_OK)
 
 
-class UnitTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class UnitTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = UnitType.objects.filter(active=True)
     serializer_class = UnitTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -143,7 +143,7 @@ class UnitTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
         return Response(data={"unitTypes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class UnitViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class UnitViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Unit.objects.filter(active=True)
     serializer_class = UnitSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -155,7 +155,7 @@ class UnitViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         return Response(data={"units": serializer.data}, status=status.HTTP_200_OK)
 
 
-class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Tank.objects.filter(active=True)
     serializer_class = TankSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -167,7 +167,7 @@ class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         return Response(data={"tanks": serializer.data}, status=status.HTTP_200_OK)
 
 
-class TankTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class TankTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = TankType.objects.filter(active=True)
     serializer_class = TankTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -179,7 +179,7 @@ class TankTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
         return Response(data={"tankTypes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Season.objects.filter(active=True)
     serializer_class = SeasonSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -191,7 +191,7 @@ class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIVi
         return Response(data={"seasons": serializer.data}, status=status.HTTP_200_OK)
 
 
-class ShrimpTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class ShrimpTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = ShrimpType.objects.filter(active=True)
     serializer_class = ShrimpTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -203,7 +203,7 @@ class ShrimpTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
         return Response(data={"shrimpTypes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class ShrimpStageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class ShrimpStageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = ShrimpStage.objects.filter(active=True)
     serializer_class = ShrimpStageSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -215,7 +215,7 @@ class ShrimpStageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Create
         return Response(data={"shrimpStages": serializer.data}, status=status.HTTP_200_OK)
 
 
-class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = TankPlanning.objects.filter(active=True)
     serializer_class = TankPlanningSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -227,7 +227,7 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
         return Response(data={"tankPlans": serializer.data}, status=status.HTTP_200_OK)
 
 
-class TankMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class TankMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = TankMonitoring.objects.filter(active=True)
     serializer_class = TankMonitoringSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -239,7 +239,7 @@ class TankMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         return Response(data={"tankMonitors": serializer.data}, status=status.HTTP_200_OK)
 
 
-class FoodViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class FoodViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Food.objects.filter(active=True)
     serializer_class = FoodSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -251,7 +251,7 @@ class FoodViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         return Response(data={"foods": serializer.data}, status=status.HTTP_200_OK)
 
 
-class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = FoodRecipe.objects.filter(active=True)
     serializer_class = FoodRecipeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -267,7 +267,7 @@ class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
         return Response(data={"foodRecipes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class FoodRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class FoodRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = FoodRecipeType.objects.filter(active=True)
     serializer_class = FoodRecipeTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -279,7 +279,7 @@ class FoodRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         return Response(data={"foodRecipeTypes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class MedicineViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class MedicineViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Medicine.objects.filter(active=True)
     serializer_class = MedicineSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -291,7 +291,7 @@ class MedicineViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
         return Response(data={"medicines": serializer.data}, status=status.HTTP_200_OK)
 
 
-class MedicineUsageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class MedicineUsageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = MedicineUsage.objects.filter(active=True)
     serializer_class = MedicineUsageSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -303,7 +303,7 @@ class MedicineUsageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Crea
         return Response(data={"usages": serializer.data}, status=status.HTTP_200_OK)
 
 
-class MedicineRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class MedicineRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = MedicineRecipe.objects.filter(active=True)
     serializer_class = MedicineRecipeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -319,7 +319,7 @@ class MedicineRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         return Response(data={"medicineRecipes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class MedicineRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class MedicineRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = MedicineRecipeType.objects.filter(active=True)
     serializer_class = MedicineRecipeTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -331,7 +331,7 @@ class MedicineRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics
         return Response(data={"medicineRecipes": serializer.data}, status=status.HTTP_200_OK)
 
 
-class DiseaseViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class DiseaseViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Disease.objects.filter(active=True)
     serializer_class = DiseaseSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -343,7 +343,7 @@ class DiseaseViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIV
         return Response(data={"diseases": serializer.data}, status=status.HTTP_200_OK)
 
 
-class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Work.objects.filter(active=True)
     serializer_class = WorkSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -355,7 +355,7 @@ class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         return Response(data={"works": serializer.data}, status=status.HTTP_200_OK)
 
 
-class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = WorkMonitoring.objects.filter(active=True)
     serializer_class = WorkMonitoringSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -367,7 +367,7 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
 
-class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Care.objects.filter(active=True)
     serializer_class = CareSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -382,7 +382,7 @@ class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         return Response(data={"cares": serializer.data}, status=status.HTTP_200_OK)
 
 
-class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView):
+class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = CareSchedule.objects.filter(active=True)
     serializer_class = CareScheduleSerializer
     permission_classes = [permissions.IsAuthenticated]
