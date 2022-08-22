@@ -182,7 +182,7 @@ class WorkMonitoringSerializer(ModelSerializer):
     class Meta:
         model = WorkMonitoring
         fields = ["id", "start_time", "finish_time", "creator_id", "performer_id",
-                  "status", "path", "tank_planning", "work","care"]
+                  "status", "path", "tank_planning", "work", "care"]
 
 
 class CareSerializer(ModelSerializer):
@@ -190,7 +190,7 @@ class CareSerializer(ModelSerializer):
 
     class Meta:
         model = Care
-        fields = ["id", "name", "shrimp_stage","care_schedule"]
+        fields = ["id", "name", "shrimp_stage", "care_schedule"]
 
 
 class CareScheduleSerializer(ModelSerializer):

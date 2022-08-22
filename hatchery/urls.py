@@ -43,3 +43,4 @@ urlpatterns = [
     path('api/login/', views.login_api),
     path('api/user/', views.get_user_data)
 ]
+ 
