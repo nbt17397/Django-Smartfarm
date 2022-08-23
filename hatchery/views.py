@@ -126,6 +126,9 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 
     def list(self, request):
         buildings = Building.objects.filter(active=True)
+        building_type = request.query_params.get('building_type')
+        if building_type is not None:
+            buildings = buildings.filter(building_type=building_type)
 
         serializer = BuildingSerializer(buildings, many=True)
         return Response(data={"buildings": serializer.data}, status=status.HTTP_200_OK)
@@ -150,6 +153,9 @@ class UnitViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
     def list(self, request):
         units = Unit.objects.filter(active=True)
+        unit_type = request.query_params.get('unit_type')
+        if unit_type is not None:
+            units = units.filter(unit_type=unit_type)
 
         serializer = UnitSerializer(units, many=True)
         return Response(data={"units": serializer.data}, status=status.HTTP_200_OK)
@@ -210,6 +216,9 @@ class ShrimpStageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Create
 
     def list(self, request):
         shrimpStages = ShrimpStage.objects.filter(active=True)
+        shrimp_type = request.query_params.get('shrimp_type')
+        if shrimp_type is not None:
+            shrimpStages = shrimpStages.filter(shrimp_type=shrimp_type)
 
         serializer = ShrimpStageSerializer(shrimpStages, many=True)
         return Response(data={"shrimpStages": serializer.data}, status=status.HTTP_200_OK)
@@ -222,6 +231,12 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
 
     def list(self, request):
         tankPlans = TankPlanning.objects.filter(active=True)
+        season = request.query_params.get('season')
+        if season is not None:
+            tankPlans = tankPlans.filter(season=season)
+        tank = request.query_params.get('tank')
+        if tank is not None:
+            tankPlans = tankPlans.filter(tank=tank)
 
         serializer = TankPlanningSerializer(tankPlans, many=True)
         return Response(data={"tankPlans": serializer.data}, status=status.HTTP_200_OK)
@@ -362,9 +377,27 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
 
     def list(self, request):
         workMonitorings = WorkMonitoring.objects.filter(active=True)
+        performer_id = request.query_params.get('performer_id')
+        if performer_id is not None:
+            workMonitorings = workMonitorings.filter(performer_id=performer_id)
+        care = request.query_params.get('care')
+        if care is not None:
+            workMonitorings = workMonitorings.filter(care=care)
 
         serializer = WorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
+
+
+class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
+    queryset = CareSchedule.objects.filter(active=True)
+    serializer_class = CareScheduleSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request):
+        careSchedules = CareSchedule.objects.filter(active=True)
+
+        serializer = CareScheduleSerializer(careSchedules, many=True)
+        return Response(data={"careSchedules": serializer.data}, status=status.HTTP_200_OK)
 
 
 class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
@@ -380,15 +413,3 @@ class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
         serializer = CareSerializer(cares, many=True)
         return Response(data={"cares": serializer.data}, status=status.HTTP_200_OK)
-
-
-class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
-    queryset = CareSchedule.objects.filter(active=True)
-    serializer_class = CareScheduleSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def list(self, request):
-        careSchedules = CareSchedule.objects.filter(active=True)
-
-        serializer = CareScheduleSerializer(careSchedules, many=True)
-        return Response(data={"careSchedules": serializer.data}, status=status.HTTP_200_OK)
