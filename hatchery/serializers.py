@@ -76,7 +76,7 @@ class SeasonSerializer(ModelSerializer):
 
     class Meta:
         model = Season
-        fields = ["id", "name", "start_time", "finish_time", "status"]
+        fields = ["id", "name", "start_time", "finish_time", "status","code"]
 
 
 class ShrimpTypeSerializer(ModelSerializer):
