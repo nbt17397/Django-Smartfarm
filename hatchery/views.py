@@ -168,6 +168,9 @@ class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
     def list(self, request):
         tanks = Tank.objects.filter(active=True)
+        building = request.query_params.get('building')
+        if building is not None:
+            tanks = tanks.filter(building=building)
 
         serializer = TankSerializer(tanks, many=True)
         return Response(data={"tanks": serializer.data}, status=status.HTTP_200_OK)
