@@ -83,7 +83,7 @@ class ShrimpTypeSerializer(ModelSerializer):
 
     class Meta:
         model = ShrimpType
-        fields = ["id", "name", "color"]
+        fields = ["id", "name", "description"]
 
 
 class ShrimpStageSerializer(ModelSerializer):

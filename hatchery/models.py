@@ -115,7 +115,7 @@ class Season(ItemBase):
 
 class ShrimpType(ItemBase):
 
-    color = models.CharField(null=True, max_length=150)
+    description = models.CharField(null=True, max_length=250)
 
 
 class ShrimpStage(ItemBase):
