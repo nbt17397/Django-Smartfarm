@@ -19,6 +19,13 @@ class UserSerializer(ModelSerializer):
 
         return user
 
+    def update(self, validated_data):
+        user = User(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+
+        return user
+
 
 class UserWeconSerializer(ModelSerializer):
 
