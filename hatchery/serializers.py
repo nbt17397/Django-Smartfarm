@@ -61,7 +61,7 @@ class TankSerializer(ModelSerializer):
     class Meta:
         model = Tank
         fields = ["id", "name", "length", "height",
-                  "width", "shape", "status", "building", "unit", "group_name"
+                  "width", "shape", "status", "building", "unit", "group_name",
                   "group_id"]
 
 
