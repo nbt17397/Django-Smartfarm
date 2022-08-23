@@ -98,7 +98,7 @@ class TankType(ItemBase):
 class Season(ItemBase):
 
     class Meta:
-        unique_together = ('name', 'start_time', 'finish_time')
+        unique_together = ('name', 'code')
 
     Draft, InProcess, Ended = range(3)
     STATUS = [
@@ -107,6 +107,7 @@ class Season(ItemBase):
         (Ended, 'Ended')
     ]
 
+    code = models.CharField(max_length=50,null=False)
     start_time = models.DateTimeField(null=False)
     finish_time = models.DateTimeField(null=False)
     status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
