@@ -76,7 +76,7 @@ class Tank(ItemBase):
         (Unavaiable, 'unavaiable')
     ]
 
-    group_id = models.SmallIntegerField(null=False)
+    group_id = models.IntegerField(null=False)
     group_name = models.CharField(max_length=150, null=True)
     length = models.FloatField(null=False)
     height = models.FloatField(null=False)
@@ -107,7 +107,7 @@ class Season(ItemBase):
         (Ended, 'Ended')
     ]
 
-    code = models.CharField(max_length=50,null=False)
+    code = models.CharField(max_length=50, null=False)
     start_time = models.DateTimeField(null=False)
     finish_time = models.DateTimeField(null=False)
     status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
