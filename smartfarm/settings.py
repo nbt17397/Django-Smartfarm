@@ -27,8 +27,17 @@ DEBUG = False
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['tunguyenba.pythonanywhere.com']
-
-
+CORS_ALLOWED_ORIGINS = ['tunguyenba.pythonanywhere.com']
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'oauth2_provider',
     'knox',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -52,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'smartfarm.urls'
