@@ -315,11 +315,12 @@ class CareSchedule(ItemBase):
 class Care(ItemBase):
     class Meta:
         unique_together = ('name', 'shrimp_stage')
+        
+    description = models.CharField(max_length=255, null=False)
     shrimp_stage = models.ForeignKey(
         ShrimpStage, on_delete=models.SET_NULL, null=True)
     care_schedule = models.ForeignKey(
         CareSchedule, on_delete=models.CASCADE, null=False)
-    description = models.CharField(max_length=255, null=False)
 
     def __str__(self) -> str:
         return "Care: " + self.name
