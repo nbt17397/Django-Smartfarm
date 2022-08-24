@@ -195,7 +195,7 @@ class CareSerializer(ModelSerializer):
 
     class Meta:
         model = Care
-        fields = ["id", "name", "shrimp_stage", "care_schedule","description"]
+        fields = ["id", "name", "shrimp_stage", "care_schedule"]
 
 
 class CareScheduleSerializer(ModelSerializer):

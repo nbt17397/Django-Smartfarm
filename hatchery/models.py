@@ -302,7 +302,7 @@ class WorkMonitoring(ItemBase):
         User, null=True, related_name="creator", on_delete=models.SET_NULL)
     performer_id = models.ForeignKey(
         User, null=True, related_name="performer", on_delete=models.SET_NULL)
-    care = models.ForeignKey('Care', null=False, on_delete=models.CASCADE)
+    care = models.ForeignKey('Care', null=True, on_delete=models.SET_NULL)
 
 
 class CareSchedule(ItemBase):
