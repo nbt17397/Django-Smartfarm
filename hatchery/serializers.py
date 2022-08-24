@@ -1,3 +1,5 @@
+from gc import get_objects
+import re
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
 
@@ -20,10 +22,9 @@ class UserSerializer(ModelSerializer):
         return user
 
     def update(self, instance, validated_data):
-        user = User(**validated_data)
-        user.set_password(validated_data['password'])
-        user.save()
-        return user
+        instance.set_password(validated_data['password'])
+        instance.save()
+        return instance
 
 
 class UserWeconSerializer(ModelSerializer):
