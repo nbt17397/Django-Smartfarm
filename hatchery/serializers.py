@@ -150,7 +150,7 @@ class MedicineSerializer(ModelSerializer):
     class Meta:
         model = Medicine
         fields = ["id", "name", "medicine_form", "origin", "manufacturer",
-                  "import_no", "expired_date", "building", "usage"]
+                  "expired_date", "building", "usage"]
 
 
 class MedicineRecipeTypeSerializer(ModelSerializer):
