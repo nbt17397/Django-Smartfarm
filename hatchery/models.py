@@ -228,10 +228,9 @@ class Medicine(ItemBase):
         choices=FORMS, default=Solution)
     origin = models.CharField(null=True, max_length=50)
     manufacturer = models.CharField(null=True, max_length=50)
-    import_no = models.CharField(null=True, max_length=50)
     expired_date = models.DateField(null=False)
-    building = models.ManyToManyField(
-        Building, related_name="medicine_building", blank=True)
+    building = models.ForeignKey(
+        Building, on_delete=models.CASCADE, blank=True)
     usage = models.ManyToManyField(
         MedicineUsage, related_name="medicine_usage", blank=True)
 
@@ -245,6 +244,7 @@ class MedicineRecipeType(ItemBase):
         ShrimpType, on_delete=models.SET_NULL, null=True)
     disease = models.ForeignKey(Disease, on_delete=models.SET_NULL, null=True)
 
+
 class MedicineRecipe(ItemBase):
     class Meta:
         unique_together = ('medicine', 'medicine_recipe_type')
@@ -255,7 +255,6 @@ class MedicineRecipe(ItemBase):
         Unit, on_delete=models.SET_NULL, null=True)
     medicine_recipe_type = models.ForeignKey(
         MedicineRecipeType, on_delete=models.CASCADE, null=False)
-    
 
 
 class Work(ItemBase):

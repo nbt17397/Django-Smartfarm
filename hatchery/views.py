@@ -281,7 +281,7 @@ class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
     def list(self, request):
         foodRecipes = FoodRecipe.objects.filter(active=True)
 
-        recipe_id = request.query_params.get("recipe_id")
+        recipe_id = request.query_params.get('recipe_id')
         if recipe_id is not None:
             foodRecipes = foodRecipes.filter(food_recipe_type=recipe_id)
 
