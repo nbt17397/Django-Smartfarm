@@ -230,7 +230,7 @@ class Medicine(ItemBase):
     manufacturer = models.CharField(null=True, max_length=50)
     expired_date = models.DateField(null=False)
     building = models.ForeignKey(
-        Building, on_delete=models.CASCADE, blank=True)
+        Building, on_delete=models.CASCADE, null=True)
     usage = models.ManyToManyField(
         MedicineUsage, related_name="medicine_usage", blank=True)
 
