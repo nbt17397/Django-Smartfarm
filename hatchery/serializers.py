@@ -156,7 +156,8 @@ class MedicineSerializer(ModelSerializer):
 class MedicineRecipeTypeSerializer(ModelSerializer):
     class Meta:
         model = MedicineRecipeType
-        fields = ["id", "name", "description", "building", "shrimp_type"]
+        fields = ["id", "name", "description",
+                  "building", "shrimp_type", "disease"]
 
 
 class MedicineRecipeSerializer(ModelSerializer):
@@ -164,7 +165,7 @@ class MedicineRecipeSerializer(ModelSerializer):
     class Meta:
         model = MedicineRecipe
         fields = ["id", "medicine", "medicine_dosage",
-                  "medicine_dosage_unit", "medicine_recipe_type", "disease"]
+                  "medicine_dosage_unit", "medicine_recipe_type"]
 
 
 class DiseaseSerializer(ModelSerializer):

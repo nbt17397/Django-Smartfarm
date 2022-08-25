@@ -243,7 +243,7 @@ class MedicineRecipeType(ItemBase):
         Building, related_name="medicine_recipe_type_building", blank=True)
     shrimp_type = models.ForeignKey(
         ShrimpType, on_delete=models.SET_NULL, null=True)
-
+    disease = models.ForeignKey(Disease, on_delete=models.SET_NULL, null=True)
 
 class MedicineRecipe(ItemBase):
     class Meta:
@@ -255,7 +255,7 @@ class MedicineRecipe(ItemBase):
         Unit, on_delete=models.SET_NULL, null=True)
     medicine_recipe_type = models.ForeignKey(
         MedicineRecipeType, on_delete=models.CASCADE, null=False)
-    disease = models.ForeignKey(Disease, on_delete=models.SET_NULL, null=True)
+    
 
 
 class Work(ItemBase):

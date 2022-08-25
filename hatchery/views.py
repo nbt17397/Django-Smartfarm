@@ -1,4 +1,5 @@
 
+from distutils.command.build import build
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
@@ -264,6 +265,9 @@ class FoodViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
     def list(self, request):
         foods = Food.objects.filter(active=True)
+        building = request.query_params.get('building')
+        if build is not None:
+            foods = foods.filter(building=building)
 
         serializer = FoodSerializer(foods, many=True)
         return Response(data={"foods": serializer.data}, status=status.HTTP_200_OK)
@@ -279,7 +283,7 @@ class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
 
         recipe_id = request.query_params.get("recipe_id")
         if recipe_id is not None:
-            foodRecipes = foodRecipes.filter(food_recipe_type_id=recipe_id)
+            foodRecipes = foodRecipes.filter(food_recipe_type=recipe_id)
 
         serializer = FoodRecipeSerializer(foodRecipes, many=True)
         return Response(data={"foodRecipes": serializer.data}, status=status.HTTP_200_OK)
@@ -292,6 +296,12 @@ class FoodRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
 
     def list(self, request):
         foodRecipeTypes = FoodRecipeType.objects.filter(active=True)
+        building = request.query_params.get('building')
+        if building is not None:
+            foodRecipeTypes = foodRecipeTypes.filter(building=building)
+        shrimp_type = request.query_params.get('shrimp_type')
+        if shrimp_type is not None:
+            foodRecipeTypes = foodRecipeTypes.filter(shrimp_type=shrimp_type)
 
         serializer = FoodRecipeTypeSerializer(foodRecipeTypes, many=True)
         return Response(data={"foodRecipeTypes": serializer.data}, status=status.HTTP_200_OK)
@@ -304,6 +314,9 @@ class MedicineViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 
     def list(self, request):
         medicines = Medicine.objects.filter(active=True)
+        building = request.query_params.get('building')
+        if building is not None:
+            medicines = medicines.filter(building=building)
 
         serializer = MedicineSerializer(medicines, many=True)
         return Response(data={"medicines": serializer.data}, status=status.HTTP_200_OK)
@@ -331,7 +344,7 @@ class MedicineRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         recipe_id = request.query_params.get('recipe_id')
         if recipe_id is not None:
             medicineRecipes = medicineRecipes.filter(
-                medicine_recipe_type_id=recipe_id)
+                medicine_recipe_type=recipe_id)
 
         serializer = MedicineRecipeSerializer(medicineRecipes, many=True)
         return Response(data={"medicineRecipes": serializer.data}, status=status.HTTP_200_OK)
@@ -343,10 +356,14 @@ class MedicineRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request):
-        medicineRecipes = MedicineRecipeType.objects.filter(active=True)
+        medicineRecipeTypes = MedicineRecipeType.objects.filter(active=True)
+        building = request.query_params.get('building')
+        if building is not None:
+            medicineRecipeTypes = medicineRecipeTypes.filter(building=building)
 
-        serializer = MedicineRecipeTypeSerializer(medicineRecipes, many=True)
-        return Response(data={"medicineRecipes": serializer.data}, status=status.HTTP_200_OK)
+        serializer = MedicineRecipeTypeSerializer(
+            medicineRecipeTypes, many=True)
+        return Response(data={"medicineRecipeTypes": serializer.data}, status=status.HTTP_200_OK)
 
 
 class DiseaseViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
