@@ -27,24 +27,24 @@ DEBUG = False
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['tunguyenba.pythonanywhere.com']
-CORS_ALLOWED_ORIGINS = ['tunguyenba.pythonanywhere.com']
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
+# CORS_ALLOWED_ORIGINS = ['tunguyenba.pythonanywhere.com']
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://localhost:8080',
-    'tunguyenba.pythonanywhere.com',
-]
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+#     'http://localhost:8000',
+#     'http://localhost:8080',
+#     'tunguyenba.pythonanywhere.com',
+# ]
 
 # Application definition
 
