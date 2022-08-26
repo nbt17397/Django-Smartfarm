@@ -11,6 +11,7 @@ from .serializers import (
     BuildingTypeSerializer,
     CareScheduleSerializer,
     CareSerializer,
+    DetailWorkMonitoringSerializer,
     DiseaseSerializer,
     FoodRecipeSerializer,
     FoodRecipeTypeSerializer,
@@ -244,6 +245,13 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
 
         serializer = TankPlanningSerializer(tankPlans, many=True)
         return Response(data={"tankPlans": serializer.data}, status=status.HTTP_200_OK)
+
+    @action(methods=['get'], detail=True, url_path='get_tank_monitorings')
+    def get_tank_monitorings(seft, request, pk):
+        tankMonitorings = seft.get_object().tank_planning.filter(active=True)
+
+        serializer = DetailWorkMonitoringSerializer(tankMonitorings, many=True)
+        return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
 
 class TankMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
