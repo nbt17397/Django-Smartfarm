@@ -81,7 +81,7 @@ class SeasonSerializer(ModelSerializer):
 
     class Meta:
         model = Season
-        fields = ["id", "name", "start_time", "finish_time", "status", "code"]
+        fields = ["id", "name", "start_time", "finish_time", "code"]
 
 
 class ShrimpTypeSerializer(ModelSerializer):
@@ -104,7 +104,7 @@ class TankPlanningSerializer(ModelSerializer):
     class Meta:
         model = TankPlanning
         fields = ["id", "name", "manager", "breed_numbers", "breed_number_unit", "water_level",
-                  "water_level_unit", "season", "tank", "tank_type", "care_schedule"]
+                  "water_level_unit", "season", "tank", "tank_type", "care_schedule", "status"]
 
 
 class TankMonitoringSerializer(ModelSerializer):

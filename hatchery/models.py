@@ -100,17 +100,9 @@ class Season(ItemBase):
     class Meta:
         unique_together = ('name', 'code')
 
-    Draft, InProcess, Ended = range(3)
-    STATUS = [
-        (Draft, 'Draft'),
-        (InProcess, 'InProcess'),
-        (Ended, 'Ended')
-    ]
-
     code = models.CharField(max_length=50, null=False)
     start_time = models.DateTimeField(null=False)
     finish_time = models.DateTimeField(null=False)
-    status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
 
 
 class ShrimpType(ItemBase):
@@ -139,6 +131,13 @@ class ShrimpStage(ItemBase):
 
 class TankPlanning(ItemBase):
 
+    Draft, InProcess, Ended = range(3)
+    STATUS = [
+        (Draft, 'Draft'),
+        (InProcess, 'InProcess'),
+        (Ended, 'Ended')
+    ]
+
     manager = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     breed_numbers = models.FloatField(null=False)
     breed_number_unit = models.ForeignKey(
@@ -152,6 +151,7 @@ class TankPlanning(ItemBase):
         TankType, on_delete=models.SET_NULL, null=True)
     care_schedule = models.ForeignKey(
         'CareSchedule', on_delete=models.SET_NULL, null=True)
+    status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
 
 
 class TankMonitoring(ItemBase):
