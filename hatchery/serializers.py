@@ -184,6 +184,7 @@ class WorkSerializer(ModelSerializer):
 
 
 class WorkMonitoringSerializer(ModelSerializer):
+    work = WorkSerializer()
 
     class Meta:
         model = WorkMonitoring
