@@ -295,7 +295,7 @@ class WorkMonitoring(ItemBase):
     status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
     path = models.ImageField(upload_to='uploads/work/%Y/%m', null=True)
     tank_planning = models.ForeignKey(
-        TankPlanning, on_delete=models.CASCADE, null=False)
+        TankPlanning, related_name="tankPlannings", on_delete=models.CASCADE, null=False)
     work = models.ForeignKey(Work, null=True, on_delete=models.SET_NULL)
     creator_id = models.ForeignKey(
         User, null=True, related_name="creator", on_delete=models.SET_NULL)
