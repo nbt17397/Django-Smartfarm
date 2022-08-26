@@ -403,6 +403,10 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         care = request.query_params.get('care')
         if care is not None:
             workMonitorings = workMonitorings.filter(care=care)
+        tank_planning = request.query_params.get('tank_planning')
+        if tank_planning is not None:
+            workMonitorings = workMonitorings.filter(
+                tank_planning=tank_planning)
 
         serializer = WorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
