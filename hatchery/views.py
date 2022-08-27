@@ -1,6 +1,4 @@
-
-from datetime import date
-import datetime
+from datetime import datetime
 from distutils.command.build import build
 from rest_framework.response import Response
 from rest_framework.decorators import action
