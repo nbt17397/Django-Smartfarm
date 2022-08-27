@@ -106,7 +106,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         now = request.query_params.get('now')
         if now is not None:
             workMonitorings = workMonitorings.filter(
-                start_time__gte=datetime.date(now), finish_time__lte=datetime.date(now))
+                start_time__lte=datetime.date(now), finish_time__gte=datetime.date(now))
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
