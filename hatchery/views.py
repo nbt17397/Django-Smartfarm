@@ -98,6 +98,13 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = UserSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
 
+    @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')
+    def get_work_monitorings_by_user(self, request, pk):
+        workMonitorings = self.get_object().performer.filter(active=True)
+
+        serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
+        return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
+
 
 class AuthInfo(APIView):
     def get(seft, request):
