@@ -39,6 +39,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
+import datetime
 
 
 @api_view(['POST'])
@@ -102,10 +103,10 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')
     def get_work_monitorings_by_user(self, request, pk):
         workMonitorings = self.get_object().performer.filter(active=True)
-        datetime = request.query_params.get('datetime')
-        if datetime is not None:
+        now = request.query_params.get('now')
+        if now is not None:
             workMonitorings = workMonitorings.filter(
-                start_time__gte=datetime, finish_time__lte=datetime)
+                start_time__gte=datetime.date(now), finish_time__lte=datetime.date(now))
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
