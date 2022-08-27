@@ -1,4 +1,5 @@
 
+from datetime import date
 from distutils.command.build import build
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -101,6 +102,11 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')
     def get_work_monitorings_by_user(self, request, pk):
         workMonitorings = self.get_object().performer.filter(active=True)
+        start_time = request.query_params.get('start_time')
+        finish_time = request.query_params.get('finish_time')
+        if start_time is not None & finish_time is not None:
+            workMonitorings = workMonitorings.filter(
+                date__range=[start_time, finish_time])
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
