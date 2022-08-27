@@ -101,11 +101,14 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')
     def get_work_monitorings_by_user(self, request, pk):
         workMonitorings = self.get_object().performer.filter(active=True)
-        now = request.query_params.get('now')
+        start = request.query_params.get('start')
+        end = request.query_params.get('end')
 
-        if now is not None:
-            date = datetime.strptime(now, "%Y-%m-%d")
-            workMonitorings = workMonitorings.filter(start_time=date)
+        if start is not None and end is not None:
+            dateStart = datetime.strptime(start, "%Y-%m-%dT%H:%M:%S.%fZ")
+            dateEnd = datetime.strptime(end, "%Y-%m-%dT%H:%M:%S.%fZ")
+            workMonitorings = workMonitorings.filter(
+                start_time__range=(dateStart, dateEnd))
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
