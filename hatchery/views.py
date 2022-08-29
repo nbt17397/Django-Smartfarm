@@ -108,10 +108,21 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
             dateStart = datetime.strptime(start, "%Y-%m-%dT%H:%M:%S.%fZ")
             dateEnd = datetime.strptime(end, "%Y-%m-%dT%H:%M:%S.%fZ")
             workMonitorings = workMonitorings.filter(
-                start_time__range=(dateStart, dateEnd))
+                start_time__range=[dateStart, dateEnd])
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
+
+    # @action(methods=['post'], detail=True, url_path='get_work_monitorings_by_user')
+    # def get_work_monitorings_by_user(self, request, pk):
+    #     workMonitorings = self.get_object().performer.filter(active=True)
+    #     time = request.query_params.get('time')
+
+    #     if time is not None:
+    #         workMonitorings = workMonitorings.filter(start_time)
+
+    #     serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
+    #     return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
 
 class AuthInfo(APIView):
