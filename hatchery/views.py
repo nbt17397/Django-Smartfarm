@@ -98,14 +98,17 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = UserSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
 
-    @action(methods=['post'], detail=True, url_path='get_work_monitorings_by_user')
+    @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')
     def get_work_monitorings_by_user(self, request, pk):
         workMonitorings = self.get_object().performer.filter(active=True)
-        time = request.data.get('time')
+        time = request.query_params.get('time')
 
         if time is not None:
+            print(time)
+            dt = datetime.strptime(time,
+                                   '%Y-%m-%d')
             workMonitorings = workMonitorings.filter(
-                start_time__year=time.year, start_time__month=time.month, start_time__day=time.day)
+                start_time__year=dt.year, start_time__month=dt.month, start_time__day=dt.day)
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)

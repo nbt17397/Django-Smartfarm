@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-zs^vk-iu$0wf+0!ufjyy62x7btxi@t+yqu7*b_=829+!=0=e)7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['tunguyenba.pythonanywhere.com']
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['tunguyenba.pythonanywhere.com']
 # CORS_ALLOWED_ORIGINS = ['tunguyenba.pythonanywhere.com']
 # CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_CREDENTIALS = True
@@ -114,25 +114,25 @@ WSGI_APPLICATION = 'smartfarm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'hatcherydb',
-#         'USER': 'root',
-#         'PASSWORD': '12345678',
-#         'HOST': ''
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tunguyenba$hatcherydb',
-        'USER': 'tunguyenba',
-        'PASSWORD': '285495659Tu',
-        'HOST': 'tunguyenba.mysql.pythonanywhere-services.com'
+        'NAME': 'hatcherydb',
+        'USER': 'root',
+        'PASSWORD': '12345678',
+        'HOST': ''
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'tunguyenba$hatcherydb',
+#         'USER': 'tunguyenba',
+#         'PASSWORD': '285495659Tu',
+#         'HOST': 'tunguyenba.mysql.pythonanywhere-services.com'
+#     }
+# }
 
 AUTH_USER_MODEL = 'hatchery.User'
 
