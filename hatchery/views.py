@@ -98,31 +98,18 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = UserSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
 
-    @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')
+    @action(methods=['post'], detail=True, url_path='get_work_monitorings_by_user')
     def get_work_monitorings_by_user(self, request, pk):
         workMonitorings = self.get_object().performer.filter(active=True)
-        start = request.query_params.get('start')
-        end = request.query_params.get('end')
+        start = request.data.get('start')
+        end = request.data.get('end')
 
         if start is not None and end is not None:
-            dateStart = datetime.strptime(start, "%Y-%m-%dT%H:%M:%S.%fZ")
-            dateEnd = datetime.strptime(end, "%Y-%m-%dT%H:%M:%S.%fZ")
             workMonitorings = workMonitorings.filter(
-                start_time__range=[dateStart, dateEnd])
+                start_time__range=[start, end])
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
-
-    # @action(methods=['post'], detail=True, url_path='get_work_monitorings_by_user')
-    # def get_work_monitorings_by_user(self, request, pk):
-    #     workMonitorings = self.get_object().performer.filter(active=True)
-    #     time = request.query_params.get('time')
-
-    #     if time is not None:
-    #         workMonitorings = workMonitorings.filter(start_time)
-
-    #     serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
-    #     return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
 
 class AuthInfo(APIView):
