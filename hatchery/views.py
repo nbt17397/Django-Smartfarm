@@ -101,12 +101,11 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     @action(methods=['post'], detail=True, url_path='get_work_monitorings_by_user')
     def get_work_monitorings_by_user(self, request, pk):
         workMonitorings = self.get_object().performer.filter(active=True)
-        start = request.data.get('start')
-        end = request.data.get('end')
+        time = request.data.get('time')
 
-        if start is not None and end is not None:
+        if time is not None:
             workMonitorings = workMonitorings.filter(
-                start_time__range=[start, end])
+                start_time__year=time.year, start_time__month=time.month, start_time__day=time.day)
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
