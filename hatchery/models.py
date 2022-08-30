@@ -35,7 +35,7 @@ class UserWecon(ItemBase):
 
 class BuildingType(ItemBase):
 
-    description = models.CharField(max_length=255, null=False)
+    description = models.CharField(max_length=1000, null=False)
 
 
 class Building(ItemBase):
@@ -43,7 +43,7 @@ class Building(ItemBase):
     class Meta:
         unique_together = ('name', 'building_type')
 
-    description = models.CharField(max_length=255, null=False)
+    description = models.CharField(max_length=1000, null=False)
     building_type = models.ForeignKey(
         BuildingType, null=False, on_delete=models.CASCADE)
     id_box = models.SmallIntegerField(null=False)
@@ -92,7 +92,7 @@ class Tank(ItemBase):
 
 class TankType(ItemBase):
 
-    description = models.CharField(max_length=255, null=False)
+    description = models.CharField(max_length=1000, null=False)
 
 
 class Season(ItemBase):
@@ -273,7 +273,7 @@ class Work(ItemBase):
     ]
 
     action = models.PositiveSmallIntegerField(choices=ACTIONS, default=Feed)
-    description = models.CharField(max_length=255, null=False)
+    description = models.CharField(max_length=1000, null=False)
     frequency = models.IntegerField(null=False)
     frequency_unit = models.ForeignKey(
         Unit, on_delete=models.SET_NULL, null=True)
