@@ -11,6 +11,8 @@ from .serializers import (
     BuildingTypeSerializer,
     CareScheduleSerializer,
     CareSerializer,
+    DetailFoodRecipeSerializer,
+    DetailMedicineRecipeSerializer,
     DetailWorkMonitoringSerializer,
     DiseaseSerializer,
     FoodRecipeSerializer,
@@ -308,7 +310,7 @@ class FoodRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
         if recipe_id is not None:
             foodRecipes = foodRecipes.filter(food_recipe_type=recipe_id)
 
-        serializer = FoodRecipeSerializer(foodRecipes, many=True)
+        serializer = DetailFoodRecipeSerializer(foodRecipes, many=True)
         return Response(data={"foodRecipes": serializer.data}, status=status.HTTP_200_OK)
 
 
@@ -369,7 +371,7 @@ class MedicineRecipeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
             medicineRecipes = medicineRecipes.filter(
                 medicine_recipe_type=recipe_id)
 
-        serializer = MedicineRecipeSerializer(medicineRecipes, many=True)
+        serializer = DetailMedicineRecipeSerializer(medicineRecipes, many=True)
         return Response(data={"medicineRecipes": serializer.data}, status=status.HTTP_200_OK)
 
 

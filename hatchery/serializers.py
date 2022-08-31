@@ -139,6 +139,17 @@ class FoodRecipeSerializer(ModelSerializer):
                   "food_recipe_type", "food", "food_weight_unit"]
 
 
+class DetailFoodRecipeSerializer(ModelSerializer):
+    food = FoodSerializer()
+    food_weight_unit = UnitSerializer()
+
+    class Meta:
+        model = FoodRecipe
+        fields = ["id", "food_weight",
+                  "food_recipe_type", "food", "food_weight_unit"]
+
+
+
 class MedicineUsageSerializer(ModelSerializer):
 
     class Meta:
@@ -162,6 +173,15 @@ class MedicineRecipeTypeSerializer(ModelSerializer):
 
 
 class MedicineRecipeSerializer(ModelSerializer):
+
+    class Meta:
+        model = MedicineRecipe
+        fields = ["id", "medicine", "medicine_dosage",
+                  "medicine_dosage_unit", "medicine_recipe_type"]
+
+class DetailMedicineRecipeSerializer(ModelSerializer):
+    medicine = MedicineSerializer()
+    medicine_dosage_unit = UnitSerializer()
 
     class Meta:
         model = MedicineRecipe
