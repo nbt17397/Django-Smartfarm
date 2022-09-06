@@ -152,7 +152,7 @@ class FoodRecipeTypeSerializer(ModelSerializer):
 
 
 class DetailFoodRecipeTypeSerializer(ModelSerializer):
-    shrimp_type = ShrimpStageSerializer()
+    shrimp_type = ShrimpTypeSerializer()
 
     class Meta:
         model = FoodRecipeType
@@ -201,7 +201,7 @@ class MedicineRecipeTypeSerializer(ModelSerializer):
 
 
 class DetailMedicineRecipeTypeSerializer(ModelSerializer):
-    shrimp_type = ShrimpStageSerializer()
+    shrimp_type = ShrimpTypeSerializer()
 
     class Meta:
         model = MedicineRecipeType
