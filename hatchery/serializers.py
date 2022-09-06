@@ -32,7 +32,6 @@ class UserSerializer(ModelSerializer):
         return instance
 
 
-
 class BuildingTypeSerializer(ModelSerializer):
 
     class Meta:
@@ -73,6 +72,7 @@ class TankSerializer(ModelSerializer):
 
 class TankDetailSerializer(ModelSerializer):
     unit = UnitSerializer()
+
     class Meta:
         model = Tank
         fields = ["id", "name", "length", "height",
@@ -107,6 +107,7 @@ class ShrimpStageSerializer(ModelSerializer):
         model = ShrimpStage
         fields = ["id", "name", "shrimp_type", "from_age", "to_age", "age_unit",
                   "from_length", "to_length", "length_unit", "from_weight", "to_weight", "weight_unit", "color"]
+
 
 class ShrimpStageDetailSerializer(ModelSerializer):
     age_unit = UnitSerializer()
@@ -150,6 +151,15 @@ class FoodRecipeTypeSerializer(ModelSerializer):
                   "building", "shrimp_type", "shrimp_stage"]
 
 
+class DetailFoodRecipeTypeSerializer(ModelSerializer):
+    shrimp_type = ShrimpStageSerializer()
+
+    class Meta:
+        model = FoodRecipeType
+        fields = ["id", "name", "comment",
+                  "building", "shrimp_type", "shrimp_stage"]
+
+
 class FoodRecipeSerializer(ModelSerializer):
 
     class Meta:
@@ -184,6 +194,15 @@ class MedicineSerializer(ModelSerializer):
 
 
 class MedicineRecipeTypeSerializer(ModelSerializer):
+    class Meta:
+        model = MedicineRecipeType
+        fields = ["id", "name", "description",
+                  "building", "shrimp_type", "disease"]
+
+
+class DetailMedicineRecipeTypeSerializer(ModelSerializer):
+    shrimp_type = ShrimpStageSerializer()
+
     class Meta:
         model = MedicineRecipeType
         fields = ["id", "name", "description",

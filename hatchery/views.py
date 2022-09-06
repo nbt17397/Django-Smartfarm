@@ -12,7 +12,9 @@ from .serializers import (
     CareScheduleSerializer,
     CareSerializer,
     DetailFoodRecipeSerializer,
+    DetailFoodRecipeTypeSerializer,
     DetailMedicineRecipeSerializer,
+    DetailMedicineRecipeTypeSerializer,
     DetailWorkMonitoringSerializer,
     DiseaseSerializer,
     FoodRecipeSerializer,
@@ -330,7 +332,7 @@ class FoodRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         if shrimp_type is not None:
             foodRecipeTypes = foodRecipeTypes.filter(shrimp_type=shrimp_type)
 
-        serializer = FoodRecipeTypeSerializer(foodRecipeTypes, many=True)
+        serializer = DetailFoodRecipeTypeSerializer(foodRecipeTypes, many=True)
         return Response(data={"foodRecipeTypes": serializer.data}, status=status.HTTP_200_OK)
 
 
@@ -388,7 +390,7 @@ class MedicineRecipeTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics
         if building is not None:
             medicineRecipeTypes = medicineRecipeTypes.filter(building=building)
 
-        serializer = MedicineRecipeTypeSerializer(
+        serializer = DetailMedicineRecipeTypeSerializer(
             medicineRecipeTypes, many=True)
         return Response(data={"medicineRecipeTypes": serializer.data}, status=status.HTTP_200_OK)
 
