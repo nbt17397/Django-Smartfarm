@@ -23,14 +23,17 @@ from .serializers import (
     MedicineSerializer,
     MedicineUsageSerializer,
     SeasonSerializer,
+    ShrimpStageDetailSerializer,
     ShrimpStageSerializer,
     ShrimpTypeSerializer,
+    TankDetailSerializer,
     TankMonitoringSerializer,
     TankPlanningSerializer,
     TankSerializer,
     TankTypeSerializer,
     UnitSerializer,
     UnitTypeSerializer,
+    UserDetailSerializer,
     UserSerializer,
     UserWeconSerializer,
     WorkMonitoringSerializer,
@@ -97,7 +100,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     def list(self, request):
         users = User.objects.filter(is_active=True)
 
-        serializer = UserSerializer(users, many=True)
+        serializer = UserDetailSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
 
     @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')
@@ -191,7 +194,7 @@ class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         if building is not None:
             tanks = tanks.filter(building=building)
 
-        serializer = TankSerializer(tanks, many=True)
+        serializer = TankDetailSerializer(tanks, many=True)
         return Response(data={"tanks": serializer.data}, status=status.HTTP_200_OK)
 
 
@@ -242,7 +245,7 @@ class ShrimpStageViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Create
         if shrimp_type is not None:
             shrimpStages = shrimpStages.filter(shrimp_type=shrimp_type)
 
-        serializer = ShrimpStageSerializer(shrimpStages, many=True)
+        serializer = ShrimpStageDetailSerializer(shrimpStages, many=True)
         return Response(data={"shrimpStages": serializer.data}, status=status.HTTP_200_OK)
 
 
