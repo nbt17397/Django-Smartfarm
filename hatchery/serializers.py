@@ -267,7 +267,7 @@ class CareSerializer(ModelSerializer):
         fields = ["id", "name", "shrimp_stage", "care_schedule", "description"]
 
 
-class CareSerializer(ModelSerializer):
+class DetailCareSerializer(ModelSerializer):
     shrimp_stage = ShrimpStageSerializer()
 
     class Meta:

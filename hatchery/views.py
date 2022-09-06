@@ -1,5 +1,4 @@
 from datetime import datetime
-from distutils.command.build import build
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
@@ -296,7 +295,7 @@ class FoodViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     def list(self, request):
         foods = Food.objects.filter(active=True)
         building = request.query_params.get('building')
-        if build is not None:
+        if building is not None:
             foods = foods.filter(building=building)
 
         serializer = FoodSerializer(foods, many=True)
