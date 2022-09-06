@@ -33,7 +33,6 @@ from .serializers import (
     TankTypeSerializer,
     UnitSerializer,
     UnitTypeSerializer,
-    UserDetailSerializer,
     UserSerializer,
     UserWeconSerializer,
     WorkMonitoringSerializer,
@@ -57,7 +56,15 @@ def login_api(request):
         user.device_token = device_token
         user.save()
     return Response({
-        'user_info': UserDetailSerializer(user),
+        'user_info': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'device_token': user.device_token,
+            'user_wecon': user.user_wecon_id,
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        },
         'token': token
     })
 
@@ -92,7 +99,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     def list(self, request):
         users = User.objects.filter(is_active=True)
 
-        serializer = UserDetailSerializer(users, many=True)
+        serializer = UserSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
 
     @action(methods=['get'], detail=True, url_path='get_work_monitorings_by_user')

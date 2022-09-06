@@ -32,17 +32,6 @@ class UserSerializer(ModelSerializer):
         return instance
 
 
-class UserDetailSerializer(ModelSerializer):
-    user_wecon = UserWeconSerializer()
-
-    class Meta:
-        model = User
-        fields = ["id", "first_name", "last_name", "email",
-                  "username", "password", "date_joined", "avatar", "user_wecon"]
-        extra_kwargs = {
-            'password': {'write_only': 'true'}
-        }
-
 
 class BuildingTypeSerializer(ModelSerializer):
 
