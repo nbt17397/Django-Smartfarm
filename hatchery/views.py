@@ -11,6 +11,7 @@ from .serializers import (
     BuildingTypeSerializer,
     CareScheduleSerializer,
     CareSerializer,
+    DetailCareSerializer,
     DetailFoodRecipeSerializer,
     DetailFoodRecipeTypeSerializer,
     DetailMedicineRecipeSerializer,
@@ -464,5 +465,5 @@ class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         if care_schedule_id is not None:
             cares = cares.filter(care_schedule_id=care_schedule_id)
 
-        serializer = CareSerializer(cares, many=True)
+        serializer = DetailCareSerializer(cares, many=True)
         return Response(data={"cares": serializer.data}, status=status.HTTP_200_OK)

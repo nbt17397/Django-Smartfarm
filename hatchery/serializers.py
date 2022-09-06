@@ -261,7 +261,14 @@ class DetailWorkMonitoringSerializer(ModelSerializer):
 
 
 class CareSerializer(ModelSerializer):
-    shrimp_stage = ShrimpStageSerializer
+
+    class Meta:
+        model = Care
+        fields = ["id", "name", "shrimp_stage", "care_schedule", "description"]
+
+
+class CareSerializer(ModelSerializer):
+    shrimp_stage = ShrimpStageSerializer()
 
     class Meta:
         model = Care
