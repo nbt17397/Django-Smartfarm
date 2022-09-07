@@ -36,6 +36,9 @@ class UserWecon(ItemBase):
 class BuildingType(ItemBase):
 
     description = models.CharField(max_length=1000, null=False)
+    address = models.CharField(max_length=1000, null=True)
+    lat = models.FloatField(null=True)
+    long = models.FloatField(null=True)
 
 
 class Building(ItemBase):
