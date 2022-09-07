@@ -129,6 +129,16 @@ class TankPlanningSerializer(ModelSerializer):
                   "water_level_unit", "season", "tank", "tank_type", "care_schedule", "status"]
 
 
+class DetailTankPlanningSerializer(ModelSerializer):
+    season = SeasonSerializer()
+    manager = UserSerializer()
+
+    class Meta:
+        model = TankPlanning
+        fields = ["id", "name", "manager", "breed_numbers", "breed_number_unit", "water_level",
+                  "water_level_unit", "season", "tank", "tank_type", "care_schedule", "status"]
+
+
 class TankMonitoringSerializer(ModelSerializer):
 
     class Meta:

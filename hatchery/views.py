@@ -15,6 +15,7 @@ from .serializers import (
     DetailFoodRecipeTypeSerializer,
     DetailMedicineRecipeSerializer,
     DetailMedicineRecipeTypeSerializer,
+    DetailTankPlanningSerializer,
     DetailWorkMonitoringSerializer,
     DiseaseSerializer,
     FoodRecipeSerializer,
@@ -264,7 +265,7 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
         if tank is not None:
             tankPlans = tankPlans.filter(tank=tank)
 
-        serializer = TankPlanningSerializer(tankPlans, many=True)
+        serializer = DetailTankPlanningSerializer(tankPlans, many=True)
         return Response(data={"tankPlans": serializer.data}, status=status.HTTP_200_OK)
 
     @action(methods=['get'], detail=True, url_path='get_work_monitorings')
