@@ -43,4 +43,8 @@ urlpatterns = [
     path('api/login/', views.login_api),
     path('api/user/', views.get_user_data)
 ]
+
+
  
+handler404 = 'utils.views.error_404'
+handler500 = 'utils.views.error_500'
