@@ -31,4 +31,7 @@ def _handle_authentication_error(exc, context, response):
 
 
 def _handle_generic_error(exc, context, response):
+    response.data = {
+        'message': exc.detail
+    }
     return response
