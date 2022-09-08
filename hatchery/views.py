@@ -86,7 +86,7 @@ def get_user_data(request):
 
 
 class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
-    queryset = User.objects.filter(is_active=True).filter(is_superuser = False)
+    queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser]
 
@@ -100,7 +100,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         return Response(seft.serializer_class(request.user).data, status=status.HTTP_200_OK)
 
     def list(self, request):
-        users = User.objects.filter(is_active=True)
+        users = User.objects.filter(is_active=True).filter(is_superuser = False)
 
         serializer = UserSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
