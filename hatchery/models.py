@@ -300,6 +300,7 @@ class WorkMonitoring(ItemBase):
     tank_planning = models.ForeignKey(
         TankPlanning, related_name="tankPlannings", on_delete=models.CASCADE, null=False)
     work = models.ForeignKey(Work, null=True, on_delete=models.SET_NULL)
+    description = models.CharField(max_length=1000, null=True)
     creator_id = models.ForeignKey(
         User, null=True, related_name="creator", on_delete=models.SET_NULL)
     performer_id = models.ForeignKey(
