@@ -273,6 +273,10 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
     def get_work_monitorings(self, request, pk):
         workMonitorings = self.get_object().tankPlannings.filter(active=True)
 
+        action = request.query_params.get('action')
+        if action is not None:
+            workMonitorings = workMonitorings.filter(work__action=action)
+
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 

@@ -265,13 +265,13 @@ class Work(ItemBase):
     class Meta:
         unique_together = ('name', 'action')
 
-    Feed, Heal, Clean, WaterExchange, Count, Test = range(6)
+    Feed, Heal, Clean, WaterExchange, Maintenance, Test = range(6)
     ACTIONS = [
         (Feed, 'Feed'),
         (Heal, 'Heal'),
         (Clean, 'Clean'),
         (WaterExchange, 'WaterExchange'),
-        (Count, 'Count'),
+        (Maintenance, 'Maintenance'),
         (Test, 'Test')
     ]
 
