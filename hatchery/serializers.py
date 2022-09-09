@@ -264,6 +264,8 @@ class WorkMonitoringSerializer(ModelSerializer):
 
 class DetailWorkMonitoringSerializer(ModelSerializer):
     work = WorkSerializer()
+    creator_id = UserSerializer()
+    performer_id = UserSerializer()
 
     class Meta:
         model = WorkMonitoring
