@@ -291,3 +291,11 @@ class CareScheduleSerializer(ModelSerializer):
     class Meta:
         model = CareSchedule
         fields = ["id", "name", "shrimp_type"]
+
+
+class DetailCareScheduleSerializer(ModelSerializer):
+    shrimp_type = ShrimpTypeSerializer()
+
+    class Meta:
+        model = CareSchedule
+        fields = ["id", "name", "shrimp_type"]

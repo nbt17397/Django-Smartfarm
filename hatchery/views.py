@@ -10,6 +10,7 @@ from .serializers import (
     BuildingTypeSerializer,
     CareScheduleSerializer,
     CareSerializer,
+    DetailCareScheduleSerializer,
     DetailCareSerializer,
     DetailFoodRecipeSerializer,
     DetailFoodRecipeTypeSerializer,
@@ -100,7 +101,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         return Response(seft.serializer_class(request.user).data, status=status.HTTP_200_OK)
 
     def list(self, request):
-        users = User.objects.filter(is_active=True).filter(is_superuser = False)
+        users = User.objects.filter(is_active=True).filter(is_superuser=False)
 
         serializer = UserSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
@@ -450,7 +451,7 @@ class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
     def list(self, request):
         careSchedules = CareSchedule.objects.filter(active=True)
 
-        serializer = CareScheduleSerializer(careSchedules, many=True)
+        serializer = DetailCareScheduleSerializer(careSchedules, many=True)
         return Response(data={"careSchedules": serializer.data}, status=status.HTTP_200_OK)
 
 
