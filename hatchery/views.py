@@ -67,7 +67,8 @@ def login_api(request):
             'device_token': user.device_token,
             'user_wecon': user.user_wecon_id,
             'first_name': user.first_name,
-            'last_name': user.last_name
+            'last_name': user.last_name,
+            'is_superuser': user.is_superuser,
         },
         'token': token
     })
