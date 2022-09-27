@@ -50,6 +50,7 @@ from knox.auth import AuthToken
 
 @api_view(['POST'])
 def login_api(request):
+    permission_classes = [permissions.AllowAny]
     serializer = AuthTokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data['user']
