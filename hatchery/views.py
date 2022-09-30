@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
@@ -270,6 +271,11 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
 
         serializer = DetailTankPlanningSerializer(tankPlans, many=True)
         return Response(data={"tankPlans": serializer.data}, status=status.HTTP_200_OK)
+
+    def retrieve(self, request, pk=None):
+        item = get_object_or_404(self.queryset, pk=pk)
+        serializer = DetailTankPlanningSerializer(item)
+        return Response(serializer.data)
 
     @action(methods=['get'], detail=True, url_path='get_work_monitorings')
     def get_work_monitorings(self, request, pk):
