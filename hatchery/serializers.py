@@ -136,6 +136,7 @@ class TankPlanningSerializer(ModelSerializer):
 class DetailTankPlanningSerializer(ModelSerializer):
     season = SeasonSerializer()
     manager = UserSerializer()
+    tank = TankSerializer()
 
     class Meta:
         model = TankPlanning
