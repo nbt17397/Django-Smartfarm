@@ -327,3 +327,18 @@ class Care(ItemBase):
 
     def __str__(self) -> str:
         return "Care: " + self.name
+
+
+class HistoryMonitor(ItemBase):
+
+    Alarm, History = range(2)
+    TYPES = [
+        (Alarm, 'Alarm'),
+        (History, 'History')
+    ]
+
+    monitor_id = models.IntegerField(null=False)
+    monitor_name = models.CharField(max_length=1000, nul=True),
+    monitor_time = models.DateTimeField(null=False),
+    description = models.CharField(max_length=1000, null=False)
+    status = models.PositiveSmallIntegerField(choices=TYPES, default=Alarm)
