@@ -338,7 +338,7 @@ class HistoryMonitor(ItemBase):
     ]
 
     monitor_id = models.IntegerField(null=False)
-    monitor_name = models.CharField(max_length=1000, nul=True),
+    monitor_name = models.CharField(max_length=200, null=True),
     monitor_time = models.DateTimeField(null=False),
     description = models.CharField(max_length=1000, null=False)
     status = models.PositiveSmallIntegerField(choices=TYPES, default=Alarm)
