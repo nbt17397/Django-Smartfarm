@@ -1,4 +1,3 @@
-from dataclasses import fields
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
 
