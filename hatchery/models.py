@@ -347,4 +347,4 @@ class ReportMonitor(ItemBase):
         TankPlanning, related_name="tankPlannings", on_delete=models.CASCADE, null=False)
     file = models.FileField(upload_to='uploads/file/%Y/%m', null=False)
     creator_id = models.ForeignKey(
-        User, null=True, related_name="creator", on_delete=models.SET_NULL)
+        User, null=True, related_name="creator_report", on_delete=models.SET_NULL)
