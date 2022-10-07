@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Building, BuildingType, Care, CareSchedule, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, Season, ShrimpStage, ShrimpType, Tank, TankType, User, UserWecon, Work, WorkMonitoring
+from .models import Building, BuildingType, Care, CareSchedule, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankType, User, UserWecon, Work, WorkMonitoring
 
 
 admin.site.register(User)
@@ -22,3 +22,4 @@ admin.site.register(WorkMonitoring)
 admin.site.register(CareSchedule)
 admin.site.register(Care)
 admin.site.register(HistoryMonitor)
+admin.site.register(ReportMonitor)

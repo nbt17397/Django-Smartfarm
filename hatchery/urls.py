@@ -36,6 +36,7 @@ router.register('careSchedules', views.CareScheduleViewSet, "careSchedule")
 router.register('cares', views.CareViewSet, "care")
 router.register('historyMonitors',
                 views.HistoryMonitorViewSet, "historyMonitor")
+router.register('reportMonitors', views.ReportMonitorViewSet, 'reportMonitor')
 
 
 urlpatterns = [
