@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework import viewsets, permissions, status, generics
-from .models import (Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
+from .models import (Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
                      Unit, UnitType, User, UserWecon, Work, WorkMonitoring)
 from .serializers import (
     BuildingSerializer,
@@ -17,6 +17,7 @@ from .serializers import (
     DetailFoodRecipeTypeSerializer,
     DetailMedicineRecipeSerializer,
     DetailMedicineRecipeTypeSerializer,
+    DetailReportMonitorSerializer,
     DetailTankPlanningSerializer,
     DetailWorkMonitoringSerializer,
     DiseaseSerializer,
@@ -28,6 +29,7 @@ from .serializers import (
     MedicineRecipeTypeSerializer,
     MedicineSerializer,
     MedicineUsageSerializer,
+    ReportMonitorSerializer,
     SeasonSerializer,
     ShrimpStageDetailSerializer,
     ShrimpStageSerializer,
@@ -496,3 +498,18 @@ class HistoryMonitorViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
 
         serializer = HistoryMonitorSerializer(history, many=True)
         return Response(data={"history": serializer.data}, status=status.HTTP_200_OK)
+
+
+class ReportMonitorViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
+    queryset = ReportMonitor.objects.filter(active=True)
+    serializer_class = ReportMonitorSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request):
+        reports = ReportMonitor.objects.filter(active=True)
+        tank_plan_id = request.query_params.get('tank_plan_id')
+        if tank_plan_id is not None:
+            reports = reports.filter(tank_planning_id=tank_plan_id)
+
+        serializer = DetailReportMonitorSerializer(reports, many=True)
+        return Response(data={"reports": serializer.data}, status=status.HTTP_200_OK)

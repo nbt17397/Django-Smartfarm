@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
+from .models import Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
 
 
 class UserWeconSerializer(ModelSerializer):
@@ -264,7 +264,7 @@ class WorkMonitoringSerializer(ModelSerializer):
     class Meta:
         model = WorkMonitoring
         fields = ["id", "start_time", "finish_time", "creator_id", "performer_id",
-                  "status", "path", "tank_planning", "work", "description", "care"]
+                  "status",  "tank_planning", "work", "description", "care"]
 
 
 class DetailWorkMonitoringSerializer(ModelSerializer):
@@ -275,7 +275,7 @@ class DetailWorkMonitoringSerializer(ModelSerializer):
     class Meta:
         model = WorkMonitoring
         fields = ["id", "start_time", "finish_time", "creator_id", "performer_id",
-                  "status", "path", "tank_planning", "work", "description", "care"]
+                  "status", "tank_planning", "work", "description", "care"]
 
 
 class CareSerializer(ModelSerializer):
@@ -312,4 +312,23 @@ class HistoryMonitorSerializer(ModelSerializer):
 
     class Meta:
         model = HistoryMonitor
-        fields = ["id", "name", "monitor_id", "description", "status","created_date"]
+        fields = ["id", "name", "monitor_id",
+                  "description", "status", "created_date"]
+
+
+class ReportMonitorSerializer(ModelSerializer):
+
+    class Meta:
+        model = ReportMonitor
+        fields = ["id", "name", "created_date",
+                  "tank_planning", "file", "creator_id"]
+
+
+class DetailReportMonitorSerializer(ModelSerializer):
+    creator_id = UserSerializer()
+    tank_planning = TankPlanningSerializer()
+
+    class Meta:
+        model = ReportMonitor
+        fields = ["id", "name", "created_date",
+                  "tank_planning", "file", "creator_id"]

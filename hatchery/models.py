@@ -296,7 +296,6 @@ class WorkMonitoring(ItemBase):
     start_time = models.DateTimeField(null=False)
     finish_time = models.DateTimeField(null=False)
     status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
-    path = models.ImageField(upload_to='uploads/work/%Y/%m', null=True)
     tank_planning = models.ForeignKey(
         TankPlanning, related_name="tankPlannings", on_delete=models.CASCADE, null=False)
     work = models.ForeignKey(Work, null=True, on_delete=models.SET_NULL)
@@ -340,3 +339,12 @@ class HistoryMonitor(ItemBase):
     monitor_id = models.IntegerField(null=False)
     description = models.CharField(max_length=1000, null=False)
     status = models.PositiveSmallIntegerField(choices=TYPES, default=Alarm)
+
+
+class ReportMonitor(ItemBase):
+
+    tank_planning = models.ForeignKey(
+        TankPlanning, related_name="tankPlannings", on_delete=models.CASCADE, null=False)
+    file = models.FileField(upload_to='uploads/file/%Y/%m', null=False)
+    creator_id = models.ForeignKey(
+        User, null=True, related_name="creator", on_delete=models.SET_NULL)
