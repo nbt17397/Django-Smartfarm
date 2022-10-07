@@ -312,4 +312,4 @@ class HistoryMonitorSerializer(ModelSerializer):
 
     class Meta:
         model = HistoryMonitor
-        fields = ["id", "name", "monitor_id", "description", "status"]
+        fields = ["id", "name", "monitor_id", "description", "status","created_date"]
