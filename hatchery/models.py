@@ -145,15 +145,15 @@ class TankPlanning(ItemBase):
     breed_numbers = models.FloatField(null=False)
     breed_number_unit = models.ForeignKey(
         Unit, related_name="tankplan_breed_number_unit", on_delete=models.SET_NULL, null=True)
-    water_level = models.FloatField(null=False)
-    water_level_unit = models.ForeignKey(
-        Unit, related_name="tankplan_water_level_unit", on_delete=models.SET_NULL, null=True)
+    # water_level = models.FloatField(null=False)
+    # water_level_unit = models.ForeignKey(
+        # Unit, related_name="tankplan_water_level_unit", on_delete=models.SET_NULL, null=True)
     season = models.ForeignKey(Season, on_delete=models.SET_NULL, null=True)
     tank = models.ForeignKey(Tank, on_delete=models.SET_NULL, null=True)
     tank_type = models.ForeignKey(
         TankType, on_delete=models.SET_NULL, null=True)
-    care_schedule = models.ForeignKey(
-        'CareSchedule', on_delete=models.SET_NULL, null=True)
+    # care_schedule = models.ForeignKey(
+        # 'CareSchedule', on_delete=models.SET_NULL, null=True)
     status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
 
 

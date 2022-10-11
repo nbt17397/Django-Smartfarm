@@ -129,8 +129,8 @@ class TankPlanningSerializer(ModelSerializer):
 
     class Meta:
         model = TankPlanning
-        fields = ["id", "name", "manager", "breed_numbers", "breed_number_unit", "water_level",
-                  "water_level_unit", "season", "tank", "tank_type", "care_schedule", "status"]
+        fields = ["id", "name", "manager", "breed_numbers",
+                  "breed_number_unit", "season", "tank", "tank_type", "status"]
 
 
 class DetailTankPlanningSerializer(ModelSerializer):
@@ -140,8 +140,8 @@ class DetailTankPlanningSerializer(ModelSerializer):
 
     class Meta:
         model = TankPlanning
-        fields = ["id", "name", "manager", "breed_numbers", "breed_number_unit", "water_level",
-                  "water_level_unit", "season", "tank", "tank_type", "care_schedule", "status"]
+        fields = ["id", "name", "manager", "breed_numbers",
+                  "breed_number_unit", "season", "tank", "tank_type", "status"]
 
 
 class TankMonitoringSerializer(ModelSerializer):
