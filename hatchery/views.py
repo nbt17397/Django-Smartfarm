@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework import viewsets, permissions, status, generics
-from .models import (Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
+from .models import (Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
                      Unit, UnitType, User, UserWecon, Work, WorkMonitoring)
 from .serializers import (
     BuildingSerializer,
@@ -24,7 +24,6 @@ from .serializers import (
     FoodRecipeSerializer,
     FoodRecipeTypeSerializer,
     FoodSerializer,
-    HistoryMonitorSerializer,
     MedicineRecipeSerializer,
     MedicineRecipeTypeSerializer,
     MedicineSerializer,
@@ -483,21 +482,6 @@ class CareViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
         serializer = DetailCareSerializer(cares, many=True)
         return Response(data={"cares": serializer.data}, status=status.HTTP_200_OK)
-
-
-class HistoryMonitorViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
-    queryset = HistoryMonitor.objects.filter(active=True)
-    serializer_class = HistoryMonitorSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def list(self, request):
-        history = HistoryMonitor.objects.filter(active=True)
-        monitor_id = request.query_params.get('monitor_id')
-        if monitor_id is not None:
-            history = history.filter(monitor_id=monitor_id)
-
-        serializer = HistoryMonitorSerializer(history, many=True)
-        return Response(data={"history": serializer.data}, status=status.HTTP_200_OK)
 
 
 class ReportMonitorViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):

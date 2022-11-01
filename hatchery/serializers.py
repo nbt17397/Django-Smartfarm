@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, HistoryMonitor, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
+from .models import Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
 
 
 class UserWeconSerializer(ModelSerializer):
@@ -308,12 +308,6 @@ class DetailCareScheduleSerializer(ModelSerializer):
         fields = ["id", "name", "shrimp_type"]
 
 
-class HistoryMonitorSerializer(ModelSerializer):
-
-    class Meta:
-        model = HistoryMonitor
-        fields = ["id", "name", "monitor_id",
-                  "description", "status", "created_date"]
 
 
 class ReportMonitorSerializer(ModelSerializer):

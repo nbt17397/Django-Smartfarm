@@ -147,13 +147,13 @@ class TankPlanning(ItemBase):
         Unit, related_name="tankplan_breed_number_unit", on_delete=models.SET_NULL, null=True)
     # water_level = models.FloatField(null=False)
     # water_level_unit = models.ForeignKey(
-        # Unit, related_name="tankplan_water_level_unit", on_delete=models.SET_NULL, null=True)
+    # Unit, related_name="tankplan_water_level_unit", on_delete=models.SET_NULL, null=True)
     season = models.ForeignKey(Season, on_delete=models.SET_NULL, null=True)
     tank = models.ForeignKey(Tank, on_delete=models.SET_NULL, null=True)
     tank_type = models.ForeignKey(
         TankType, on_delete=models.SET_NULL, null=True)
     # care_schedule = models.ForeignKey(
-        # 'CareSchedule', on_delete=models.SET_NULL, null=True)
+    # 'CareSchedule', on_delete=models.SET_NULL, null=True)
     status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
 
 
@@ -265,14 +265,14 @@ class Work(ItemBase):
     class Meta:
         unique_together = ('name', 'action')
 
-    Feed, Heal, Clean, WaterExchange, Maintenance, Test = range(6)
+    Feed, Heal, Clean, Monitor, Maintenance, About = range(6)
     ACTIONS = [
         (Feed, 'Feed'),
         (Heal, 'Heal'),
         (Clean, 'Clean'),
-        (WaterExchange, 'WaterExchange'),
+        (Monitor, 'Monitor'),
         (Maintenance, 'Maintenance'),
-        (Test, 'Test')
+        (About, 'About')
     ]
 
     action = models.PositiveSmallIntegerField(choices=ACTIONS, default=Feed)
@@ -300,11 +300,11 @@ class WorkMonitoring(ItemBase):
         TankPlanning, related_name="tankPlannings", on_delete=models.CASCADE, null=False)
     work = models.ForeignKey(Work, null=True, on_delete=models.SET_NULL)
     description = models.CharField(max_length=1000, null=True)
+    confirm = models.CharField(max_length=1000, null=True)
     creator_id = models.ForeignKey(
         User, null=True, related_name="creator", on_delete=models.SET_NULL)
     performer_id = models.ForeignKey(
         User, null=True, related_name="performer", on_delete=models.SET_NULL)
-    care = models.ForeignKey('Care', null=True, on_delete=models.SET_NULL)
 
 
 class CareSchedule(ItemBase):
@@ -326,19 +326,6 @@ class Care(ItemBase):
 
     def __str__(self) -> str:
         return "Care: " + self.name
-
-
-class HistoryMonitor(ItemBase):
-
-    Alarm, History = range(2)
-    TYPES = [
-        (Alarm, 'Alarm'),
-        (History, 'History')
-    ]
-
-    monitor_id = models.IntegerField(null=False)
-    description = models.CharField(max_length=1000, null=False)
-    status = models.PositiveSmallIntegerField(choices=TYPES, default=Alarm)
 
 
 class ReportMonitor(ItemBase):
