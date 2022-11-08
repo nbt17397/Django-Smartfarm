@@ -323,5 +323,5 @@ class ResultPlanSerializer(ModelSerializer):
 
     class Meta:
         model = ResultPlan
-    fields = ["id", "tank_planning", "result_breed_numbers", "shrimp_size", "price",
-              "revenue", "survival_rate", "food_total", "revenue_total", "cost", "profit", "percent_profit"]
+        fields = ["id", "tank_planning", "result_breed_numbers", "shrimp_size", "price",
+                  "revenue", "survival_rate", "food_total", "revenue_total", "cost", "profit", "percent_profit"]
