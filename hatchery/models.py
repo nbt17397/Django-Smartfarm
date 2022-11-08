@@ -330,3 +330,22 @@ class ReportMonitor(ItemBase):
     file = models.FileField(upload_to='uploads/file/%Y/%m', null=False)
     creator_id = models.ForeignKey(
         User, null=True, related_name="creator_report", on_delete=models.SET_NULL)
+
+
+class ResultPlan(ItemBase):
+
+    tank_planning = models.OneToOneField(
+        TankPlanning, on_delete=models.CASCADE, null=False)
+    result_breed_numbers = models.FloatField(null=False)  # so luong thu duoc
+    shrimp_size = models.FloatField(null=False)
+    price = models.FloatField(null=False)
+    revenue = models.FloatField(null=False)
+    survival_rate = models.FloatField(null=False)  # ti le song
+    food_total = models.FloatField(null=False)  # tong thuc an
+    revenue_total = models.FloatField(null=False)  # tong thu
+    cost = models.FloatField(null=False)
+    profit = models.FloatField(null=False)  # loi nhuan
+    percent_profit = models.FloatField(null=False)  # % loi nhuan
+
+    def __str__(self) -> str:
+        return "ResultPlan: " + self.tank_planning

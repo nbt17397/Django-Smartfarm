@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework import viewsets, permissions, status, generics
-from .models import (Building, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
+from .models import (Building, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, ResultPlan, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
                      Unit, UnitType, User, UserWecon, Work, WorkMonitoring)
 from .serializers import (
     BuildingSerializer,
@@ -28,6 +28,7 @@ from .serializers import (
     MedicineSerializer,
     MedicineUsageSerializer,
     ReportMonitorSerializer,
+    ResultPlanSerializer,
     SeasonSerializer,
     ShrimpStageDetailSerializer,
     ShrimpStageSerializer,
@@ -487,3 +488,17 @@ class ReportMonitorViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Crea
 
         serializer = DetailReportMonitorSerializer(reports, many=True)
         return Response(data={"reports": serializer.data}, status=status.HTTP_200_OK)
+
+
+class ResultPlanViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ResultPlanSerializer
+
+    def get_queryset(self):
+        resultPlans = ResultPlan.objects.filter(active=True)
+
+        tank_planning = self.request.query_params.get('tank_planning')
+        if tank_planning is not None:
+            resultPlans = resultPlans.filter(tank_planning=tank_planning)
+        serializer = ResultPlanSerializer(resultPlans, many=False)
+        return Response(data={"resultPlans": serializer.data}, status=status.HTTP_200_OK)
