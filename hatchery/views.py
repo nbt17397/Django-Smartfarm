@@ -4,11 +4,10 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework import viewsets, permissions, status, generics
-from .models import (Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
+from .models import (Building, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
                      Unit, UnitType, User, UserWecon, Work, WorkMonitoring)
 from .serializers import (
     BuildingSerializer,
-    BuildingTypeSerializer,
     CareScheduleSerializer,
     CareSerializer,
     DetailCareScheduleSerializer,
@@ -137,17 +136,6 @@ class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAP
     serializer_class = UserWeconSerializer
 
 
-class BuildingTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
-    queryset = BuildingType.objects.filter(active=True)
-    serializer_class = BuildingTypeSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def list(self, request):
-        buildingTypes = BuildingType.objects.filter(active=True)
-
-        serializer = BuildingTypeSerializer(buildingTypes, many=True)
-        return Response(data={"buildingTypes": serializer.data}, status=status.HTTP_200_OK)
-
 
 class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Building.objects.filter(active=True)
@@ -156,10 +144,6 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 
     def list(self, request):
         buildings = Building.objects.filter(active=True)
-        building_type = request.query_params.get('building_type')
-        if building_type is not None:
-            buildings = buildings.filter(building_type=building_type)
-
         serializer = BuildingSerializer(buildings, many=True)
         return Response(data={"buildings": serializer.data}, status=status.HTTP_200_OK)
 

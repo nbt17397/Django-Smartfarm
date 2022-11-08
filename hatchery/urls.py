@@ -6,7 +6,6 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register('users', views.UserViewSet, "user")
 router.register('userWecons', views.UserWeconViewSet, "userWecon")
-router.register('buildingTypes', views.BuildingTypeViewSet, "buildingType")
 router.register('buildings', views.BuildingViewSet, "building")
 router.register('tanks', views.TankViewSet, "tank")
 router.register('unitTypes', views.UnitTypeViewSet, "unitType")

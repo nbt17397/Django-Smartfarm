@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from .models import Building, BuildingType, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
+from .models import Building, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
 
 
 class UserWeconSerializer(ModelSerializer):
@@ -14,7 +14,7 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "first_name", "last_name", "email",
-                  "username", "password", "date_joined", "avatar", "user_wecon"]
+                  "username", "password", "date_joined", "building", "user_wecon"]
         extra_kwargs = {
             'password': {'write_only': 'true'}
         }
@@ -36,20 +36,12 @@ class UserSerializer(ModelSerializer):
         return instance
 
 
-class BuildingTypeSerializer(ModelSerializer):
-
-    class Meta:
-        model = BuildingType
-        fields = ["id", "name", "description",
-                  "active", "address", "lat", "long"]
-
-
 class BuildingSerializer(ModelSerializer):
 
     class Meta:
         model = Building
         fields = ["id", "name", "description",
-                  "building_type", "active", "id_box"]
+                  "address", "active", "id_box"]
 
 
 class UnitTypeSerializer(ModelSerializer):
@@ -96,7 +88,7 @@ class SeasonSerializer(ModelSerializer):
 
     class Meta:
         model = Season
-        fields = ["id", "name", "start_time", "finish_time", "code"]
+        fields = ["id", "name", "start_time", "finish_time", "building", "code"]
 
 
 class ShrimpTypeSerializer(ModelSerializer):
@@ -306,8 +298,6 @@ class DetailCareScheduleSerializer(ModelSerializer):
     class Meta:
         model = CareSchedule
         fields = ["id", "name", "shrimp_type"]
-
-
 
 
 class ReportMonitorSerializer(ModelSerializer):

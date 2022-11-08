@@ -3,7 +3,9 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to='uploads/users/%Y/%m', null=True)
+
+    building = models.ForeignKey(
+        'Building', on_delete=models.CASCADE, null=True)
     device_token = models.CharField(max_length=50, null=True)
     user_wecon = models.ForeignKey(
         'UserWecon', null=True, on_delete=models.CASCADE)
@@ -33,22 +35,13 @@ class UserWecon(ItemBase):
         return self.name
 
 
-class BuildingType(ItemBase):
-
-    description = models.CharField(max_length=1000, null=False)
-    address = models.CharField(max_length=1000, null=True)
-    lat = models.FloatField(null=True)
-    long = models.FloatField(null=True)
-
-
 class Building(ItemBase):
 
     class Meta:
-        unique_together = ('name', 'building_type')
+        unique_together = ('name', 'id_box')
 
     description = models.CharField(max_length=1000, null=False)
-    building_type = models.ForeignKey(
-        BuildingType, null=False, on_delete=models.CASCADE)
+    address = models.CharField(max_length=1000, null=True)
     id_box = models.SmallIntegerField(null=False)
 
 
@@ -101,9 +94,11 @@ class TankType(ItemBase):
 class Season(ItemBase):
 
     class Meta:
-        unique_together = ('name', 'code')
+        unique_together = ('building', 'code')
 
     code = models.CharField(max_length=50, null=False)
+    building = models.ForeignKey(
+        Building, on_delete=models.CASCADE, null=False)
     start_time = models.DateTimeField(null=False)
     finish_time = models.DateTimeField(null=False)
 

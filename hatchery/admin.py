@@ -1,11 +1,10 @@
 from django.contrib import admin
-from .models import Building, BuildingType, Care, CareSchedule, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankType, User, UserWecon, Work, WorkMonitoring
+from .models import Building,  Care, CareSchedule, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankType, User, UserWecon, Work, WorkMonitoring
 
 
 admin.site.register(User)
 admin.site.register(UserWecon)
 admin.site.register(Building)
-admin.site.register(BuildingType)
 admin.site.register(Tank)
 admin.site.register(TankType)
 admin.site.register(Season)
