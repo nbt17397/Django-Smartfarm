@@ -106,6 +106,9 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
     def list(self, request):
         users = User.objects.filter(is_active=True).filter(is_superuser=False)
+        building = request.query_params.get('building')
+        if building is not None:
+            users = users.filter(building=building)
 
         serializer = UserSerializer(users, many=True)
         return Response(data={"users": serializer.data}, status=status.HTTP_200_OK)
@@ -136,7 +139,6 @@ class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAP
     serializer_class = UserWeconSerializer
 
 
-
 class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Building.objects.filter(active=True)
     serializer_class = BuildingSerializer
@@ -144,6 +146,7 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 
     def list(self, request):
         buildings = Building.objects.filter(active=True)
+
         serializer = BuildingSerializer(buildings, many=True)
         return Response(data={"buildings": serializer.data}, status=status.HTTP_200_OK)
 
@@ -209,6 +212,9 @@ class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIVi
 
     def list(self, request):
         seasons = Season.objects.filter(active=True)
+        building = request.query_params.get('building')
+        if building is not None:
+            seasons = seasons.filter(building=building)
 
         serializer = SeasonSerializer(seasons, many=True)
         return Response(data={"seasons": serializer.data}, status=status.HTTP_200_OK)
