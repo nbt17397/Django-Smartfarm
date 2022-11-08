@@ -501,5 +501,5 @@ class ResultPlanViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
         tank_planning = self.request.query_params.get('tank_planning')
         if tank_planning is not None:
             resultPlans = resultPlans.filter(tank_planning=tank_planning)
-        serializer = ResultPlanSerializer(resultPlans, many=False)
+        serializer = ResultPlanSerializer(resultPlans, many=True)
         return Response(data={"resultPlans": serializer.data}, status=status.HTTP_200_OK)
