@@ -491,6 +491,7 @@ class ReportMonitorViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Crea
 
 
 class ResultPlanViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
+    queryset = ResultPlan.objects.filter(active=True)
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ResultPlanSerializer
 
