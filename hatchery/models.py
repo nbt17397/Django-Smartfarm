@@ -334,7 +334,7 @@ class ReportMonitor(ItemBase):
 
 class ResultPlan(ItemBase):
 
-    tank_planning = models.OneToOneField(
+    tank_planning = models.ForeignKey(
         TankPlanning, on_delete=models.CASCADE, null=False)
     result_breed_numbers = models.FloatField(null=False)  # so luong thu duoc
     shrimp_size = models.FloatField(null=False)
