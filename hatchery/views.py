@@ -495,9 +495,9 @@ class ResultPlanViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateA
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ResultPlanSerializer
 
-    def list(self):
+    def list(self, request):
         resultPlans = ResultPlan.objects.filter(active=True)
-        tank_planning = self.request.query_params.get('tank_planning')
+        tank_planning = request.query_params.get('tank_planning')
         if tank_planning is not None:
             resultPlans = resultPlans.filter(tank_planning=tank_planning)
 
