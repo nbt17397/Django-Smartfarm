@@ -300,6 +300,7 @@ class WorkMonitoring(ItemBase):
         User, null=True, related_name="creator", on_delete=models.SET_NULL)
     performer_id = models.ForeignKey(
         User, null=True, related_name="performer", on_delete=models.SET_NULL)
+    path = models.FileField(upload_to='uploads/path/%Y/%m', null=True)
 
 
 class CareSchedule(ItemBase):
@@ -339,7 +340,7 @@ class ResultPlan(ItemBase):
     result_breed_numbers = models.FloatField(null=False)  # so luong thu duoc
     shrimp_size = models.FloatField(null=False)
     price = models.FloatField(null=False)
-    revenue = models.FloatField(null=False)
+    revenue = models.FloatField(null=False)  # san luong thu
     survival_rate = models.FloatField(null=False)  # ti le song
     food_total = models.FloatField(null=False)  # tong thuc an
     revenue_total = models.FloatField(null=False)  # tong thu
