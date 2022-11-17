@@ -49,6 +49,9 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
+import logging
+
+logger = logging.getLogger('active')
 
 
 @api_view(['POST'])
@@ -443,6 +446,8 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         if tank_planning is not None:
             workMonitorings = workMonitorings.filter(
                 tank_planning=tank_planning)
+
+        logger.info(request.user + "View workMonitoring")
 
         serializer = WorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
