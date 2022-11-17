@@ -447,7 +447,7 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
             workMonitorings = workMonitorings.filter(
                 tank_planning=tank_planning)
 
-        logger.info(request.user + "View workMonitoring")
+        logger.info("View workMonitoring")
 
         serializer = WorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
