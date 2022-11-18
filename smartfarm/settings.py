@@ -67,7 +67,6 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'knox',
     "corsheaders",
-    "django_admin_logs",
 ]
 
 MIDDLEWARE = [
