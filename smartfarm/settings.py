@@ -28,8 +28,6 @@ LOG_VIEWER_PAGE_LENGTH = 25
 LOG_VIEWER_MAX_READ_LINES = 1000
 
 # Optionally you can set the next variables in order to customize the admin:
-LOG_VIEWER_FILE_LIST_TITLE = "Custom title"
-LOG_VIEWER_FILE_LIST_STYLES = "/static/css/my-custom.css"
 
 
 # Quick-start development settings - unsuitable for production
