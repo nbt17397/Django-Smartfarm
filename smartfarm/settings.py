@@ -14,9 +14,13 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from rest_framework.settings import api_settings
+from smartfarm.logger import LOGGING
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOGGING = LOGGING
 
 # Django log viewer
 LOG_VIEWER_FILES_DIR = "logs"
