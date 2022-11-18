@@ -452,6 +452,10 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
         serializer = WorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
+    def create(self, request, *args, **kwargs):
+        logger.info("Add workMonitoring")
+        return super().create(request, *args, **kwargs)
+
 
 class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = CareSchedule.objects.filter(active=True)
