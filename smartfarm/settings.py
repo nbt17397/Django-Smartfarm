@@ -14,18 +14,32 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from rest_framework.settings import api_settings
-from smartfarm.logger import LOGGING
+# from smartfarm.logger import LOGGING
 
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOGGING = LOGGING
+# LOGGING = LOGGING
 
-# Django log viewer
-LOG_VIEWER_FILES_DIR = "logs"
-LOG_VIEWER_PAGE_LENGTH = 25
-LOG_VIEWER_MAX_READ_LINES = 1000
+# # Django log viewer
+# LOG_VIEWER_FILES_DIR = "logs"
+# LOG_VIEWER_PAGE_LENGTH = 25
+# LOG_VIEWER_MAX_READ_LINES = 1000
+
+LOG_VIEWER_FILES = ['logfile1', 'logfile2', ...]
+LOG_VIEWER_FILES_PATTERN = '*.log*'
+LOG_VIEWER_FILES_DIR = 'logs/'
+LOG_VIEWER_PAGE_LENGTH = 25       # total log lines per-page
+LOG_VIEWER_MAX_READ_LINES = 1000  # total log lines will be read
+LOG_VIEWER_FILE_LIST_MAX_ITEMS_PER_PAGE = 25 # Max log files loaded in Datatable per page
+LOG_VIEWER_PATTERNS = ['[INFO]', '[DEBUG]', '[WARNING]', '[ERROR]', '[CRITICAL]']
+LOG_VIEWER_EXCLUDE_TEXT_PATTERN = None  # String regex expression to exclude the log from line
+
+# Optionally you can set the next variables in order to customize the admin:
+LOG_VIEWER_FILE_LIST_TITLE = "Custom title"
+LOG_VIEWER_FILE_LIST_STYLES = "/static/css/my-custom.css"
+
 
 # Optionally you can set the next variables in order to customize the admin:
 
