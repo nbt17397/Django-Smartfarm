@@ -34,24 +34,24 @@ DEBUG = False
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['tunguyenba.pythonanywhere.com']
-CORS_ALLOWED_ORIGINS = ['tunguyenba.pythonanywhere.com']
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
+# CORS_ALLOWED_ORIGINS = ['tunguyenba.pythonanywhere.com']
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
 
-CORS_ORIGIN_WHITELIST = [
-    "https://example.com",
-    "https://sub.example.com",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000"
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "https://example.com",
+#     "https://sub.example.com",
+#     "http://localhost:8080",
+#     "http://127.0.0.1:9000"
+# ]
 
 # Application definition
 
@@ -164,15 +164,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# REST_KNOX = {
-#     'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
-#     'AUTH_TOKEN_CHARACTER_LENGTH': 64,
-#     'TOKEN_TTL': timedelta(hours=24),
-#     'USER_SERIALIZER': 'knox.serializers.UserSerializer',
-#     'TOKEN_LIMIT_PER_USER': None,
-#     'AUTO_REFRESH': False,
-#     'EXPIRY_DATETIME_FORMAT': api_settings.DATETME_FORMAT,
-# }
+REST_KNOX = {
+    'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
+    'AUTH_TOKEN_CHARACTER_LENGTH': 64,
+    'TOKEN_TTL': timedelta(hours=24),
+    'USER_SERIALIZER': 'knox.serializers.UserSerializer',
+    'TOKEN_LIMIT_PER_USER': None,
+    'AUTO_REFRESH': False,
+    'EXPIRY_DATETIME_FORMAT': api_settings.DATETIME_FORMAT,
+}
 
 
 # Internationalization
