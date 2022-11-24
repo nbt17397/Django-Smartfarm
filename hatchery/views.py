@@ -59,6 +59,7 @@ def login_api(request):
     serializer = AuthTokenSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data['user']
+    user.auth_token_set.all().delete()
     _, token = AuthToken.objects.create(user)
 
     device_token = request.data.get('device_token')
