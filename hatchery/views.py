@@ -51,8 +51,6 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
 
 
-
-
 @api_view(['POST'])
 def login_api(request):
     permission_classes = [permissions.AllowAny]
@@ -132,6 +130,11 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
+    def delete(self, request, *args, **kwargs):
+        user = request.user
+        user.is_active = False
+        return Response(data={"message": "Account successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
+
 
 class AuthInfo(APIView):
     def get(seft, request):
@@ -153,6 +156,11 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 
         serializer = BuildingSerializer(buildings, many=True)
         return Response(data={"buildings": serializer.data}, status=status.HTTP_200_OK)
+
+    def delete(self, request, *args, **kwargs):
+        building = request.building
+        building.active = False
+        return Response(data={"message": "Building successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
 class UnitTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
@@ -196,6 +204,11 @@ class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = TankDetailSerializer(tanks, many=True)
         return Response(data={"tanks": serializer.data}, status=status.HTTP_200_OK)
 
+    def delete(self, request, *args, **kwargs):
+        tank = request.tank
+        tank.active = False
+        return Response(data={"message": "Tank successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
+
 
 class TankTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = TankType.objects.filter(active=True)
@@ -222,6 +235,11 @@ class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIVi
 
         serializer = SeasonSerializer(seasons, many=True)
         return Response(data={"seasons": serializer.data}, status=status.HTTP_200_OK)
+
+    def delete(self, request, *args, **kwargs):
+        season = request.season
+        season.active = False
+        return Response(data={"message": "Season successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
 class ShrimpTypeViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
@@ -283,6 +301,11 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
 
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
+
+    def delete(self, request, *args, **kwargs):
+        tankPlanning = request.tankPlanning
+        tankPlanning.active = False
+        return Response(data={"message": "TankPlanning successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
 class TankMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
@@ -447,12 +470,16 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
             workMonitorings = workMonitorings.filter(
                 tank_planning=tank_planning)
 
-
         serializer = WorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        workMonitoring = request.workMonitoring
+        workMonitoring.active = False
+        return Response(data={"message": "WorkMonitoring successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
 class CareScheduleViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
