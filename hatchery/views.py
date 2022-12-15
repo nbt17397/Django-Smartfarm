@@ -130,13 +130,19 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
-    def destroy(self, request, pk=None, **kwargs):
+    # def destroy(self, request, pk=None, **kwargs):
 
-        user_id = self.kwargs["user_id"]
-        user = get_object_or_404(User,id=user_id)
+    #     user_id = self.kwargs["user_id"]
+    #     user = get_object_or_404(User,id=user_id)
+    #     user.is_active = False
+    #     user.save()
+
+    #     return Response(status=204)
+
+    def destroy(self, request, pk, format=None):
+        user = self.get_object(pk)
         user.is_active = False
         user.save()
-
         return Response(status=204)
 
 
