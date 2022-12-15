@@ -134,6 +134,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     def destroy(self, request, *args, **kwargs):
         user = request.user
         user.is_active = False
+        user.save()
         return Response(data={"message": "Account successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -161,6 +162,7 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
     def destroy(self, request, *args, **kwargs):
         building = request.building
         building.active = False
+        building.save()
         return Response(data={"message": "Building successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -208,6 +210,7 @@ class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     def destroy(self, request, *args, **kwargs):
         tank = request.tank
         tank.active = False
+        tank.save()
         return Response(data={"message": "Tank successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -240,6 +243,7 @@ class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIVi
     def destroy(self, request, *args, **kwargs):
         season = request.season
         season.active = False
+        season.save()
         return Response(data={"message": "Season successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -306,6 +310,7 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
     def destroy(self, request, *args, **kwargs):
         tankPlanning = request.tankPlanning
         tankPlanning.active = False
+        tankPlanning.save()
         return Response(data={"message": "TankPlanning successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -455,6 +460,7 @@ class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     def destroy(self, request, *args, **kwargs):
         work = request.work
         work.active = False
+        work.save()
         return Response(data={"message": "Work successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
@@ -484,6 +490,7 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
     def destroy(self, request, *args, **kwargs):
         workMonitoring = request.workMonitoring
         workMonitoring.active = False
+        workMonitoring.save()
         return Response(data={"message": "WorkMonitoring successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
 
 
