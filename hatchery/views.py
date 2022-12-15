@@ -130,12 +130,12 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
+    def destroy(self, request, pk=None, **kwargs):
 
-    def destroy(self, request,pk=None, **kwargs):
-        user = self.queryset.get(id=self.request.id)
-        user.is_active = False
-        user.save()
-        return Response(data={"message": "Account successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
+        request.user.is_active = False
+        request.user.save()
+
+        return Response(status=204)
 
 
 class AuthInfo(APIView):
@@ -462,6 +462,7 @@ class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         work.active = False
         work.save()
         return Response(data={"message": "Work successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
+
 
 class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = WorkMonitoring.objects.filter(active=True)
