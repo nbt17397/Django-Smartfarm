@@ -132,7 +132,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
 
     def destroy(self, request,pk=None, **kwargs):
-        user = request.user
+        user = self.queryset.get(id=self.request.id)
         user.is_active = False
         user.save()
         return Response(data={"message": "Account successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
