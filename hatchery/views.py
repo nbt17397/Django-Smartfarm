@@ -139,7 +139,7 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
     #     return Response(status=204)
 
-    @action(detail=True)
+    @action(methods=['post'], detail=True, url_path='delete')
     def destroy(self, request, pk, format=None):
         user = self.get_object(pk)
         user.is_active = False
