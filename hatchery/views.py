@@ -139,8 +139,8 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
 
     #     return Response(status=204)
 
-    def destroy(self, request, id, format=None):
-        user = User.objects.get(id=id)
+    def destroy(self, request, *args, **kwargs):
+        user = User.objects.get(user = request.user)
         user.is_active = False
         user.save()
         return Response(status=204)
