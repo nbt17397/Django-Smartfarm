@@ -130,15 +130,6 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
-    # def destroy(self, request, pk=None, **kwargs):
-
-    #     user_id = self.kwargs["user_id"]
-    #     user = get_object_or_404(User,id=user_id)
-    #     user.is_active = False
-    #     user.save()
-
-    #     return Response(status=204)
-
     def destroy(self, request, pk, *args, **kwargs):
         user = User.objects.get(pk=pk)
         user.is_active = False
@@ -167,8 +158,8 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
         serializer = BuildingSerializer(buildings, many=True)
         return Response(data={"buildings": serializer.data}, status=status.HTTP_200_OK)
 
-    def destroy(self, request, *args, **kwargs):
-        building = request.building
+    def destroy(self, request, pk, *args, **kwargs):
+        building = Building.objects.get(pk=pk)
         building.active = False
         building.save()
         return Response(data={"message": "Building successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
@@ -215,8 +206,8 @@ class TankViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = TankDetailSerializer(tanks, many=True)
         return Response(data={"tanks": serializer.data}, status=status.HTTP_200_OK)
 
-    def destroy(self, request, *args, **kwargs):
-        tank = request.tank
+    def destroy(self, request, pk, *args, **kwargs):
+        tank = Tank.objects.get(pk=pk)
         tank.active = False
         tank.save()
         return Response(data={"message": "Tank successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
@@ -248,8 +239,8 @@ class SeasonViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIVi
         serializer = SeasonSerializer(seasons, many=True)
         return Response(data={"seasons": serializer.data}, status=status.HTTP_200_OK)
 
-    def destroy(self, request, *args, **kwargs):
-        season = request.season
+    def destroy(self, request, pk, *args, **kwargs):
+        season = Season.objects.get(pk=pk)
         season.active = False
         season.save()
         return Response(data={"message": "Season successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
@@ -315,8 +306,8 @@ class TankPlanningViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Creat
         serializer = DetailWorkMonitoringSerializer(workMonitorings, many=True)
         return Response(data={"workMonitorings": serializer.data}, status=status.HTTP_200_OK)
 
-    def destroy(self, request, *args, **kwargs):
-        tankPlanning = request.tankPlanning
+    def destroy(self, request, pk, *args, **kwargs):
+        tankPlanning = TankPlanning.objects.get(pk=pk)
         tankPlanning.active = False
         tankPlanning.save()
         return Response(data={"message": "TankPlanning successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
@@ -465,8 +456,8 @@ class WorkViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
         serializer = WorkSerializer(works, many=True)
         return Response(data={"works": serializer.data}, status=status.HTTP_200_OK)
 
-    def destroy(self, request, *args, **kwargs):
-        work = request.work
+    def destroy(self, request, pk, *args, **kwargs):
+        work = Work.objects.get(pk=pk)
         work.active = False
         work.save()
         return Response(data={"message": "Work successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
@@ -496,8 +487,8 @@ class WorkMonitoringViewSet(viewsets.ViewSet, generics.ListAPIView, generics.Cre
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
 
-    def destroy(self, request, *args, **kwargs):
-        workMonitoring = request.workMonitoring
+    def destroy(self, request, pk, *args, **kwargs):
+        workMonitoring = WorkMonitoring.objects.get(pk=pk)
         workMonitoring.active = False
         workMonitoring.save()
         return Response(data={"message": "WorkMonitoring successfully disabled."}, status=status.HTTP_204_NO_CONTENT)
