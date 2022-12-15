@@ -138,14 +138,13 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     #     user.save()
 
     #     return Response(status=204)
-    
 
-    def destroy(self, request, pk, format=None):
-        user = self.get_object(User,id=self.pk)
+    def destroy(self, request, pk, *args, **kwargs):
+        user = User.objects.get(pk=pk)
         user.is_active = False
         user.save()
         return Response(status=204)
-    
+
 
 class AuthInfo(APIView):
     def get(seft, request):
