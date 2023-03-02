@@ -77,7 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'requestlogs.middleware.RequestLogsMiddleware',
 ]
 
@@ -153,7 +153,6 @@ LOGGING = {
     },
 }
 
-
 REQUESTLOGS = {
     'STORAGE_CLASS': 'requestlogs.storages.LoggingStorage',
     'ENTRY_CLASS': 'requestlogs.entries.RequestLogEntry',
@@ -201,15 +200,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# REST_KNOX = {
-#     'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
-#     'AUTH_TOKEN_CHARACTER_LENGTH': 64,
-#     'TOKEN_TTL': timedelta(hours=24),
-#     'USER_SERIALIZER': 'knox.serializers.UserSerializer',
-#     'TOKEN_LIMIT_PER_USER': None,
-#     'AUTO_REFRESH': False,
-#     'EXPIRY_DATETIME_FORMAT': api_settings.DATETME_FORMAT,
-# }
+REST_KNOX = {
+    'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
+    'AUTH_TOKEN_CHARACTER_LENGTH': 64,
+    'TOKEN_TTL': timedelta(hours=24),
+    'USER_SERIALIZER': 'knox.serializers.UserSerializer',
+    'TOKEN_LIMIT_PER_USER': 1,
+    'AUTO_REFRESH': False,
+    'EXPIRY_DATETIME_FORMAT': api_settings.DATETIME_FORMAT,
+}
 
 
 # Internationalization
