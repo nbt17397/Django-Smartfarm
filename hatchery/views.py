@@ -74,6 +74,7 @@ def login_api(request):
             'first_name': user.first_name,
             'last_name': user.last_name,
             'is_superuser': user.is_superuser,
+            'building': user.building,
         },
         'token': token
     })
@@ -96,11 +97,12 @@ class UserViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserSerializer
     parser_classes = [MultiPartParser]
-
-    def get_permissions(self):
-        if self.action == 'get_current_user':
-            return [permissions.IsAuthenticated]
-        return [permissions.AllowAny()]
+    permission_classes = [permissions.IsAuthenticated]
+    
+    # def get_permissions(self):
+    #     if self.action == 'get_current_user':
+    #         return [permissions.IsAuthenticated]
+    #     return [permissions.AllowAny()]
 
     @action(methods=['get'], detail=False, url_path='current-user')
     def get_current_user(seft, request):
