@@ -33,6 +33,18 @@ class UserWecon(ItemBase):
 
     def __str__(self) -> str:
         return self.name
+    
+
+class Area(ItemBase):
+
+    Vietnam, Thailand, Cambodia = range(3)
+    NATION = [
+        (Vietnam, 'vietnam'),
+        (Thailand, 'thailand'),
+        (Cambodia, 'cambodia')
+    ]
+
+    nation = models.PositiveSmallIntegerField(choices=NATION, default=Vietnam)
 
 
 class Building(ItemBase):
@@ -40,9 +52,10 @@ class Building(ItemBase):
     class Meta:
         unique_together = ('name', 'id_box')
 
-    description = models.CharField(max_length=1000, null=False)
+    area_id = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True, blank=True)
+    description = models.CharField(max_length=1000, null=True)
     address = models.CharField(max_length=1000, null=True)
-    id_box = models.SmallIntegerField(null=False)
+    id_box = models.SmallIntegerField(null=True)
 
 
 class UnitType(ItemBase):

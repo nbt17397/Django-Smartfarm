@@ -92,8 +92,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
-    # 'EXCEPTION_HANDLER': 'utils.exceptionhandler.custom_exception_handler',
-    'EXCEPTION_HANDLER': 'requestlogs.views.exception_handler',
+    'EXCEPTION_HANDLER': 'utils.exceptionhandler.custom_exception_handler',
+    # 'EXCEPTION_HANDLER': 'requestlogs.views.exception_handler',
 }
 
 OAUTH2_INFO = {
