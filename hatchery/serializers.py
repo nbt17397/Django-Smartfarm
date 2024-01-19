@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import Building, ResultPlan, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
-
+from .models import Area
 
 class UserWeconSerializer(ModelSerializer):
 
@@ -34,6 +34,21 @@ class UserSerializer(ModelSerializer):
                 setattr(instance, attr, value)
         instance.save()
         return instance
+    
+
+class AreaSerializer(ModelSerializer):
+
+    class Meta:
+        model = Area
+        fields = ["id", "name", "nation", "active"]
+
+        
+class BuildingSerializer(ModelSerializer):
+
+    class Meta:
+        model = Building
+        fields = ["id", "name", "description",
+                  "address", "active", "id_box"]
 
 
 class BuildingSerializer(ModelSerializer):
@@ -42,6 +57,7 @@ class BuildingSerializer(ModelSerializer):
         model = Building
         fields = ["id", "name", "description",
                   "address", "active", "id_box"]
+                  
 
 
 class UnitTypeSerializer(ModelSerializer):

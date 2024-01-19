@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework import viewsets, permissions, status, generics
 from .models import (Building, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, ResultPlan, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
-                     Unit, UnitType, User, UserWecon, Work, WorkMonitoring)
+                     Unit, UnitType, User, UserWecon, Work, WorkMonitoring, Area, AreaDetail)
 from .serializers import (
     BuildingSerializer,
     CareScheduleSerializer,
@@ -42,6 +42,8 @@ from .serializers import (
     UnitTypeSerializer,
     UserSerializer,
     UserWeconSerializer,
+    AreaSerializer,
+    AreaDetailSerializer,
     WorkMonitoringSerializer,
     WorkSerializer)
 from django.conf import settings
@@ -146,6 +148,10 @@ class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAP
     queryset = UserWecon.objects.filter(active=True)
     serializer_class = UserWeconSerializer
 
+class AreaViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
+    queryset = Area.objects.filter(active=True)
+    serializer_class = AreaSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Building.objects.filter(active=True)
@@ -154,6 +160,10 @@ class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPI
 
     def list(self, request):
         buildings = Building.objects.filter(active=True)
+
+        area_id = request.query_params.get('area_id')
+        if area_id is not None:
+            buildings = buildings.filter(area_id=area_id)
 
         serializer = BuildingSerializer(buildings, many=True)
         return Response(data={"buildings": serializer.data}, status=status.HTTP_200_OK)
