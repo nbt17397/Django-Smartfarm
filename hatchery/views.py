@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework import viewsets, permissions, status, generics
 from .models import (Building, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, ResultPlan, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
-                     Unit, UnitType, User, UserWecon, Work, WorkMonitoring, Area, AreaDetail)
+                     Unit, UnitType, User, UserWecon, Work, WorkMonitoring, Area, BuildingDetail)
 from .serializers import (
     BuildingSerializer,
     CareScheduleSerializer,
@@ -43,8 +43,8 @@ from .serializers import (
     UserSerializer,
     UserWeconSerializer,
     AreaSerializer,
-    AreaDetailSerializer,
     WorkMonitoringSerializer,
+    BuildingDetailSerializer,
     WorkSerializer)
 from django.conf import settings
 from rest_framework.views import APIView
@@ -152,6 +152,11 @@ class UserWeconViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAP
 class AreaViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
     queryset = Area.objects.filter(active=True)
     serializer_class = AreaSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class BuildingDetailViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):
+    queryset = BuildingDetail.objects.filter(active=True)
+    serializer_class = BuildingDetailSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 class BuildingViewSet(viewsets.ViewSet, generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.RetrieveAPIView, generics.DestroyAPIView):

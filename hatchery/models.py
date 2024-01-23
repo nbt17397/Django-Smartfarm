@@ -57,6 +57,15 @@ class Building(ItemBase):
     address = models.CharField(max_length=1000, null=True)
     id_box = models.SmallIntegerField(null=True)
 
+class BuildingDetail(ItemBase):
+
+    class Meta:
+        unique_together = ('name', 'id_box')
+
+    building_id = models.ForeignKey(Building, on_delete=models.SET_NULL, null=True, blank=True, related_name="detail_ids")
+    id_box = models.SmallIntegerField(null=True)   
+    is_running = models.BooleanField(default=True)
+
 
 class UnitType(ItemBase):
     pass
