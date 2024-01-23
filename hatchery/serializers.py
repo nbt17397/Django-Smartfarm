@@ -46,7 +46,7 @@ class AreaSerializer(ModelSerializer):
 class BuildingDetailSerializer(ModelSerializer):
 
     class Meta:
-        model = Building
+        model = BuildingDetail
         fields = ["id", "name", "is_running", "id_box", "building_id"]
 
 
@@ -138,7 +138,7 @@ class TankPlanningSerializer(ModelSerializer):
     class Meta:
         model = TankPlanning
         fields = ["id", "name", "manager", "breed_numbers",
-                  "breed_number_unit", "season", "tank", "tank_type", "status"]
+                  "breed_number_unit", "season", "tank", "tank_type", "status", "shrimp_type", "density", "rearing_phase", "days_rearing"]
 
 
 class DetailTankPlanningSerializer(ModelSerializer):
@@ -149,7 +149,7 @@ class DetailTankPlanningSerializer(ModelSerializer):
     class Meta:
         model = TankPlanning
         fields = ["id", "name", "manager", "breed_numbers",
-                  "breed_number_unit", "season", "tank", "tank_type", "status"]
+                  "breed_number_unit", "season", "tank", "tank_type", "status", "shrimp_type", "density", "rearing_phase", "days_rearing"]
 
 
 class TankMonitoringSerializer(ModelSerializer):
