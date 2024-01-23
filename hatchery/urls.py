@@ -36,6 +36,7 @@ router.register('cares', views.CareViewSet, "care")
 router.register('reportMonitors', views.ReportMonitorViewSet, 'reportMonitor')
 router.register('resultPlans', views.ResultPlanViewSet, 'resultPlan')
 router.register('areas', views.AreaViewSet, "area")
+router.register('buildingDetails', views.BuildingViewSet, "buildingDetail")
 
 
 urlpatterns = [
