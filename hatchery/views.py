@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework import viewsets, permissions, status, generics
 from .models import (Building, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, ResultPlan, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType,
-                     Unit, UnitType, User, UserWecon, Work, WorkMonitoring, Area, AreaDetail)
+                     Unit, UnitType, User, UserWecon, Work, WorkMonitoring, Area)
 from .serializers import (
     BuildingSerializer,
     CareScheduleSerializer,
@@ -43,7 +43,6 @@ from .serializers import (
     UserSerializer,
     UserWeconSerializer,
     AreaSerializer,
-    AreaDetailSerializer,
     WorkMonitoringSerializer,
     WorkSerializer)
 from django.conf import settings

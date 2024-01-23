@@ -43,12 +43,6 @@ class AreaSerializer(ModelSerializer):
         fields = ["id", "name", "nation", "active"]
 
         
-class BuildingSerializer(ModelSerializer):
-
-    class Meta:
-        model = Building
-        fields = ["id", "name", "description",
-                  "address", "active", "id_box"]
 
 
 class BuildingSerializer(ModelSerializer):
@@ -56,7 +50,7 @@ class BuildingSerializer(ModelSerializer):
     class Meta:
         model = Building
         fields = ["id", "name", "description",
-                  "address", "active", "id_box"]
+                  "address", "active", "id_box" ,"area_id"]
                   
 
 
