@@ -172,10 +172,10 @@ class TankPlanning(ItemBase):
     # care_schedule = models.ForeignKey(
     # 'CareSchedule', on_delete=models.SET_NULL, null=True)
     status = models.PositiveSmallIntegerField(choices=STATUS, default=Draft)
-    shrimp_type = models.CharField(null=True, blank=True)
-    density = models.CharField(null=True, blank=True)
-    rearing_phase = models.CharField(null=True, blank=True) #giai đoạn nuôi
-    days_rearing = models.CharField(null=True, blank=True) #ngày nuôi
+    shrimp_type = models.CharField(null=True, blank=True, max_length=150)
+    density = models.CharField(null=True, blank=True, max_length=150)
+    rearing_phase = models.CharField(null=True, blank=True, max_length=150) #giai đoạn nuôi
+    days_rearing = models.CharField(null=True, blank=True, max_length=150) #ngày nuôi
     
 
 
