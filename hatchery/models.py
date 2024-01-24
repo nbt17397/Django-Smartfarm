@@ -63,7 +63,8 @@ class BuildingDetail(ItemBase):
         unique_together = ('name', 'id_box')
 
     building_id = models.ForeignKey(Building, on_delete=models.SET_NULL, null=True, blank=True, related_name="detail_ids")
-    id_box = models.SmallIntegerField(null=True)   
+    id_box = models.SmallIntegerField(null=True)
+    index =  models.SmallIntegerField(null=True, blank=True, default=0)  
     is_running = models.BooleanField(default=True)
 
 
