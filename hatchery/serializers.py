@@ -47,7 +47,7 @@ class BuildingDetailSerializer(ModelSerializer):
 
     class Meta:
         model = BuildingDetail
-        fields = ["id", "name", "is_running", "id_box", "building_id"]
+        fields = ["id", "name", "is_running", "id_box", "building_id", "index"]
 
 
 class BuildingSerializer(ModelSerializer):
