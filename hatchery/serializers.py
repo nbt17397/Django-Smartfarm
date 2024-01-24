@@ -47,7 +47,7 @@ class BuildingDetailSerializer(ModelSerializer):
 
     class Meta:
         model = BuildingDetail
-        fields = ["id", "name", "is_running", "id_box", "building_id", "index"]
+        fields = ["id", "name", "is_running", "id_box", "building_id", "index", "source_pump_group_id", "clarifier_group_id", "nanobubble_group_id", "oxygen_group_id", "pond1_group_id", "pond2_group_id", "pond3_group_id", "overview_group_id", "pond_param_group_id", "setting_group_id"]
 
 
 class BuildingSerializer(ModelSerializer):
