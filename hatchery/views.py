@@ -77,6 +77,7 @@ def login_api(request):
             'last_name': user.last_name,
             'is_superuser': user.is_superuser,
             'building': user.building_id,
+            'alarm_boxs': user.alarm_boxs
         },
         'token': token
     })
