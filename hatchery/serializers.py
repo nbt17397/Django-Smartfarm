@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import Building, ResultPlan, Care, CareSchedule, Disease, Food, FoodRecipe, FoodRecipeType, Medicine, MedicineRecipe, MedicineRecipeType, MedicineUsage, ReportMonitor, Season, ShrimpStage, ShrimpType, Tank, TankMonitoring, TankPlanning, TankType, Unit, UnitType, User, UserWecon, Work, WorkMonitoring
-from .models import Area, BuildingDetail
+from .models import Area, BuildingDetail, Box
 
 class UserWeconSerializer(ModelSerializer):
 
@@ -14,7 +14,7 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "first_name", "last_name", "email",
-                  "username", "password", "date_joined", "building", "user_wecon"]
+                  "username", "password", "date_joined", "building", "user_wecon", "alarm_boxs"]
         extra_kwargs = {
             'password': {'write_only': 'true'}
         }
@@ -35,6 +35,11 @@ class UserSerializer(ModelSerializer):
         instance.save()
         return instance
     
+
+class BoxSerializer(ModelSerializer):
+    class Meta:
+        model = Box
+        fields = ["id", "box_id", "name"]
 
 class AreaSerializer(ModelSerializer):
 

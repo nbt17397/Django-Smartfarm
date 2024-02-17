@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+class Box(models.Model):
+    
+    name = models.CharField(max_length=150, null=False)
+    box_id = models.IntegerField(null=False, default=0) 
+
 
 class User(AbstractUser):
 
@@ -9,6 +14,10 @@ class User(AbstractUser):
     device_token = models.CharField(max_length=50, null=True)
     user_wecon = models.ForeignKey(
         'UserWecon', null=True, on_delete=models.CASCADE)
+    alarm_boxs = models.ManyToManyField(
+        Box, related_name="user_alarm_boxs", blank=True)
+    
+
 
 
 class ItemBase (models.Model):
