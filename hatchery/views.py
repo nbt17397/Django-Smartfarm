@@ -66,6 +66,8 @@ def login_api(request):
     if device_token is not None:
         user.device_token = device_token
         user.save()
+
+    box_ids = user.alarm_boxs.values_list('box_id', flat=True)
     return Response({
         'user_info': {
             'id': user.id,
@@ -77,7 +79,7 @@ def login_api(request):
             'last_name': user.last_name,
             'is_superuser': user.is_superuser,
             'building': user.building_id,
-            'alarm_boxs': list(user.alarm_boxs.box_id)
+            'alarm_boxs': list(box_ids)
         },
         'token': token
     })
