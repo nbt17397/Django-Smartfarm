@@ -61,10 +61,17 @@ class Building(ItemBase):
     class Meta:
         unique_together = ('name', 'id_box')
 
+    Aquabox, ContainerFarm = range(2)
+    TYPES = [
+        (Aquabox, 'aquabox'),
+        (ContainerFarm, 'container'),
+    ]
+
     area_id = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True, blank=True)
     description = models.CharField(max_length=1000, null=True)
     address = models.CharField(max_length=1000, null=True)
     id_box = models.SmallIntegerField(null=True)
+    type = models.PositiveSmallIntegerField(choices=TYPES, default=Aquabox)
 
 class BuildingDetail(ItemBase):
 
